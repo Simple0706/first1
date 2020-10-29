@@ -9,42 +9,42 @@ import com.hnjd.news.util.DatabaseUtil;
 
 public class BaseDao {
 	/**
-	 * ÔöÉ¾¸Ä²Ù×÷
+	 * ï¿½ï¿½É¾ï¿½Ä²ï¿½ï¿½ï¿½
 	 * @param sql
 	 * @param params
 	 * @return
 	 * @throws SQLException
 	 */
 	public int excuteUpdate(String sql,Object... params) throws SQLException {
-		//1.Á¬½ÓÊý¾Ý¿â
+		//1.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½
 		Connection conn = DatabaseUtil.getConnection();
-		//2.ÏòÊý¾Ý¿â·¢ËÍsqlÓï¾ä
+		//2.ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿â·¢ï¿½ï¿½sqlï¿½ï¿½ï¿½
 		PreparedStatement pst = conn.prepareStatement(sql);
-		//3.ÏòÊý¾Ý¿â·¢ËÍ¸½¼Ó²ÎÊý
+		//3.ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿â·¢ï¿½Í¸ï¿½ï¿½Ó²ï¿½ï¿½ï¿½
 		for(int i = 0 ; i < params.length ; i++) {
 			pst.setObject(i + 1, params[i]);
 		}
-		//4.Ö´ÐÐ²Ù×÷
+		//4.Ö´ï¿½Ð²ï¿½ï¿½ï¿½
 		int result = pst.executeUpdate();
-		//5.¹Ø±ÕÊý¾Ý¿â
+		//5.ï¿½Ø±ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½
 		DatabaseUtil.closeAll(conn, pst, null);
 		return result;
 	}
 	
 	/**
-	 * ²éÑ¯²Ù×÷
+	 * ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
 	 * @throws SQLException 
 	 */
 	public ResultSet excuteQuery(String sql,Object... params) throws SQLException {
-		//1.»ñÈ¡Êý¾Ý¿âÁ¬½Ó
+		//1.ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½
 		Connection conn = DatabaseUtil.getConnection();
-		//2.ÏòÊý¾Ý¿â·¢ËÍsqlÓï¾ä"select * from news_users where uname=? and upwd=?"
+		//2.ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿â·¢ï¿½ï¿½sqlï¿½ï¿½ï¿½"select * from news_users where uname=? and upwd=?"
 		PreparedStatement pst = conn.prepareStatement(sql);
-		//3.ÏòÊý¾Ý¿â´«µÝ¸½¼Ó²ÎÊý
+		//3.ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿â´«ï¿½Ý¸ï¿½ï¿½Ó²ï¿½ï¿½ï¿½
 		for(int i = 0 ; i < params.length ; i++) {
 			pst.setObject(i + 1, params[i]);
 		}
-		//4.Ö´ÐÐ²éÑ¯²Ù×÷
+		//4.Ö´ï¿½Ð²ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
 		ResultSet result = pst.executeQuery();
 		return result;
 	}

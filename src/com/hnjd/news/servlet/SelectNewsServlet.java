@@ -1,15 +1,18 @@
 package com.hnjd.news.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.hnjd.news.dao.NewsDao;
-import com.hnjd.news.dao.NewsDaoImpl;
-import com.hnjd.news.entity.News;
+import com.hnjd.news.dao.*;
+
+import com.hnjd.news.entity.*;
 
 /**
  * Servlet implementation class SelectNewsServlet
@@ -34,16 +37,17 @@ public class SelectNewsServlet extends HttpServlet {
 		String nidStr = request.getParameter("nid");
 		String option = request.getParameter("option");
 		Integer nid = Integer.valueOf(nidStr);
-		
 		NewsDao newsDao = new NewsDaoImpl();
 		News newsById = new News();
+		TopicDao topicdao = new TopicDaoImpl();
+		List<Topic> topiclist = new ArrayList();
 		try {
 			newsById = newsDao.getNewsById(nid);
 			request.setAttribute("newsById", newsById);
-			
-			
+			 topiclist = topicdao.getAllTopics();
+			request.setAttribute("topiclist", topiclist);
 		} catch (Exception e) {
-			// TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
+			// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½Éµï¿½ catch ï¿½ï¿½
 			e.printStackTrace();
 		}
 			if("1".equals(option)){

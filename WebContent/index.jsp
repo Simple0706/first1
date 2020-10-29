@@ -39,9 +39,11 @@
 			<c:forEach var="news" items="<%=newsList%>">
 				<tr>
 					<td><input type="checkbox" name="nids" value="${news.nid}"></td>
+					<td>${news.ntid}</td>
 					<td>
 						<a href="${pageContext.request.contextPath}/selectNewsServlet?nid=${news.nid}">${news.ntitle}</a>
 					</td>
+					
 					<td>${news.nauthor}</td>
 					<td>${news.ncreateDate}</td>
 					<td>${news.nmodifyDate}</td>

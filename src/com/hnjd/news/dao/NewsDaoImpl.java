@@ -17,7 +17,7 @@ import com.hnjd.news.entity.News;
  */
 public class NewsDaoImpl extends BaseDao implements NewsDao {
 
-	/* £¨·Ç Javadoc£©
+	/* ï¿½ï¿½ï¿½ï¿½ Javadocï¿½ï¿½
 	 * @see com.hnjd.news.dao.NewsDao#getAllNews()
 	 */
 	@Override
@@ -40,16 +40,16 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		return newsList;
 	}
 
-	/* £¨·Ç Javadoc£©
+	/* ï¿½ï¿½ï¿½ï¿½ Javadocï¿½ï¿½
 	 * @see com.hnjd.news.dao.NewsDao#getNewsByTopicId(int)
 	 */
 	@Override
 	public List<News> getNewsByTopicId(int ntid) {
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		return null;
 	}
 
-	/* £¨·Ç Javadoc£©
+	/* ï¿½ï¿½ï¿½ï¿½ Javadocï¿½ï¿½
 	 * @see com.hnjd.news.dao.NewsDao#getNewsById(int)
 	 */
 	@Override
@@ -74,12 +74,12 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 	
 
 	
-	/* £¨·Ç Javadoc£©
+	/* ï¿½ï¿½ï¿½ï¿½ Javadocï¿½ï¿½
 	 * @see com.hnjd.news.dao.NewsDao#addNews(com.hnjd.news.entity.News)
 	 */
 	@Override
 	public int addNews(News news) throws SQLException {
-		//ÒýÓÃ¸¸ÀàbasedaoµÄexcuteUpdate·½·¨£¬×¢ÒâÊäÈë²ÎÊý¡¢Êä³ö²ÎÊý
+		//ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½basedaoï¿½ï¿½excuteUpdateï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		String sql = "insert into news (ntid,ntitle,nauthor,ncreateDate,npicPath,ncontent,nmodifyDate,nsummary) values (?,?,?,?,?,?,?,?)";
 		int result = excuteUpdate(sql , 
 				news.getNtid(),
@@ -93,7 +93,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		return result;
 	}
 
-	/* £¨·Ç Javadoc£©
+	/* ï¿½ï¿½ï¿½ï¿½ Javadocï¿½ï¿½
 	 * @see com.hnjd.news.dao.NewsDao#editNews(int)
 	 */
 	@Override
@@ -114,25 +114,25 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 
 	/*public static void main(String[] args) {
 		NewsDaoImpl newsDao = new NewsDaoImpl();
-		//¹¹½¨ÐèÒªÐÞ¸ÄÖ®ºóµÄ¶ÔÏó
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Þ¸ï¿½Ö®ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½
 		News news = new News();
 		news.setNid(187);
 		news.setNcontent("123");
-		news.setNtitle("²âÊÔ");
-		news.setNauthor("²âÊÔ");
-		news.setNsummary("²âÊÔ");
+		news.setNtitle("ï¿½ï¿½ï¿½ï¿½");
+		news.setNauthor("ï¿½ï¿½ï¿½ï¿½");
+		news.setNsummary("ï¿½ï¿½ï¿½ï¿½");
 		news.setNtid(3);
 		news.setNcreateDate(new Date());
 		try {
 			newsDao.editNews(187, news);
 		} catch (SQLException e) {
-			// TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
+			// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½Éµï¿½ catch ï¿½ï¿½
 			e.printStackTrace();
 		}
 	}*/
 	
 	
-	/* £¨·Ç Javadoc£©
+	/* ï¿½ï¿½ï¿½ï¿½ Javadocï¿½ï¿½
 	 * @see com.hnjd.news.dao.NewsDao#deleteNews(int)
 	 */
 	@Override

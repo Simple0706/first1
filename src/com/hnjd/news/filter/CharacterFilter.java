@@ -19,22 +19,22 @@ public class CharacterFilter implements Filter {
      * Default constructor. 
      */
     public CharacterFilter() {
-       System.out.println("Filter创建...");
+       System.out.println("Filter锟斤拷锟斤拷...");
     }
 
 	/**
 	 * @see Filter#destroy()
 	 */
 	public void destroy() {
-		System.out.println("Filter销毁...");
+		System.out.println("Filter锟斤拷锟斤拷...");
 	}
 
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		request.setCharacterEncoding("utf-8");//客户端——>服务器的乱码
-		response.setContentType("text/html;charset=utf-8");//服务器——>客户端的乱码
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
 
 		chain.doFilter(request, response);
 	}
@@ -43,7 +43,7 @@ public class CharacterFilter implements Filter {
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		System.out.println("Filter初始化...");
+		System.out.println("Filter锟斤拷始锟斤拷...");
 	}
 
 }

@@ -21,6 +21,7 @@
 			<option value="3">军事</option> -->
 		</select>
 		<br/>
+		新闻标题：<input type="text" name="nid" value="${newsById.nid}"><br/>
 		新闻标题：<input type="text" name="ntitle" value="${newsById.ntitle}"><br/>
 		新闻作者：<input type="text" name="nauthor" value="${newsById.nauthor}"><br/>
 		图片地址：<input type="text" name="npicPath" value="${newsById.npicPath}">
@@ -28,5 +29,6 @@
 		新闻概括：<textarea name="nsummary" rows="10" cols="20">${newsById.nsummary}</textarea>
 		<input type="submit">
 	</form>
+	
 </body>
 </html>

@@ -1,6 +1,8 @@
 package com.hnjd.news.dao;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import com.hnjd.news.entity.News;
@@ -8,24 +10,26 @@ import com.hnjd.news.entity.News;
 /**
  * 
  * @author Administrator
- * уК╤тuser╠М╣дкЫсп╡ывВё╛╤╗рЕ╥╫╥╗
+ * О©╫О©╫О©╫userО©╫О©╫О©╫О©╫О©╫О©╫п╡О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫Е╥╫О©╫О©╫
  */
 public interface NewsDao {
-	//1.╡И©╢кЫсппбне
+	//1.О©╫И©╢О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 	public List<News> getAllNews () throws Exception; 
 	
-	//2.╦Ы╬щ╡╩м╛╣дпбнеюЮпм╡И©╢пбне
+	//2.О©╫О©╫О©╫щ╡О©╫м╛О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫м╡И©╢О©╫О©╫О©╫О©╫
 	public List<News> getNewsByTopicId(int ntid);
 	
-	//3.╦Ы╬щId╡И©╢дЁлУпбне
+	//3.О©╫О©╫О©╫О©╫IdО©╫И©╢дЁО©╫О©╫О©╫О©╫О©╫О©╫
 	public News getNewsById(int nid) throws Exception;
 	
-	//4.лМ╪ср╩лУпбне
+	//4.О©╫О©╫О©╫р╩О©╫О©╫О©╫О©╫О©╫О©╫
 	public int addNews(News news) throws Exception;
 	
-	//5.╦Ы╬щIdпч╦дпбне
+	//5.О©╫О©╫О©╫О©╫IdО©╫ч╦О©╫О©╫О©╫О©╫О©╫
 	public int editNews(int nid,News news) throws Exception ;
 	
-	//5.╦Ы╬щIdи╬ЁЩпбне
+	//5.О©╫О©╫О©╫О©╫Idи╬О©╫О©╫О©╫О©╫О©╫О©╫
 	public int deleteNews(int nid) throws SQLException;
 }
+
+

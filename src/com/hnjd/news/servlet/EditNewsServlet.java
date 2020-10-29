@@ -1,6 +1,7 @@
 package com.hnjd.news.servlet;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -41,36 +42,35 @@ public class EditNewsServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		try {
-			String nid = request.getParameter("nid");
-			News news = new News();
-			news.setNauthor(request.getParameter("nauthor"));
-			news.setNcontent(request.getParameter("ncontent"));
-			news.setNpicPath(request.getParameter("npicPath"));
-			news.setNsummary(request.getParameter("nsummary"));
-			news.setNmodifyDate(new Date());
-			
-			String ncreateDate = request.getParameter("ncreateDate");
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			news.setNcreateDate(sdf.parse(ncreateDate));
-			
-			news.setNid(Integer.valueOf(request.getParameter("nid")));
-			news.setNtid(Integer.valueOf(request.getParameter("ntid")));
-			news.setNtitle(request.getParameter("ntitle"));
-			
-			NewsDao newsDao = new NewsDaoImpl();
-			int result = newsDao.editNews(Integer.valueOf(nid), news);
-			
-			if(result>0) {
-				request.setAttribute("message", "修改成功！");
-			}else {
-				request.setAttribute("message", "修改失败！");
-			}
-			
-			request.getRequestDispatcher("/index.jsp").forward(request, response);
-			
-		}catch (Exception e) {
-			// TODO: handle exception
+		String nid = request.getParameter("nid");
+
+		News news = new News();
+
+		news.setNauthor(request.getParameter("nauthor"));
+		news.setNcontent(request.getParameter("ncontent"));
+		news.setNpicPath(request.getParameter("npicPath"));
+		news.setNsummary(request.getParameter("nsummary"));
+		news.setNmodifyDate(new Date());
+
+		String ncreateDate = request.getParameter("ncreateDate");
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//		
+//			news.setNcreateDate(sdf.parse(ncreateDate));
+		news.setNcreateDate(new Date());
+
+		news.setNid(Integer.valueOf(request.getParameter("nid")));
+		news.setNtid(Integer.valueOf(request.getParameter("ntid")));
+		news.setNtitle(request.getParameter("ntitle"));
+		NewsDao newsDao = new NewsDaoImpl();
+		newsDao.editNews(Integer.valueOf(nid), news);
+
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		}
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

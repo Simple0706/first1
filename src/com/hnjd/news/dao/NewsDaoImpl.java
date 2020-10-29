@@ -164,5 +164,6 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		return newsList;
 		
 	}
+	
 
 }

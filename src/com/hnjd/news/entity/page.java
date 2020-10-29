@@ -1,10 +1,10 @@
-package com.hnjd.news.dao;
+package com.hnjd.news.entity;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.hnjd.news.entity.News;
+import com.hnjd.news.dao.NewsDaoImpl;
 
 public class page {
 	//当前页面
@@ -47,13 +47,13 @@ public class page {
 		this.countpage = countpage;
 	}
 	public int getShowpage() {
-		return 1;
+		return showpage;
 	}
 	public void setShowpage(int showpage) {
 		this.showpage = showpage;
 	}
 	public int getCountpagesize() {
-		return countpage%showpage==0? countpage/showpage:countpage/showpage+1;
+		return getCountpage()%showpage==0? getCountpage()/showpage:getCountpage()/showpage+1;
 	}
 	public void setCountpagesize(int countpagesize) {
 		this.countpagesize = countpagesize;

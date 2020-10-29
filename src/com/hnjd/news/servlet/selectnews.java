@@ -12,9 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.hnjd.news.dao.NewsDao;
 import com.hnjd.news.dao.NewsDaoImpl;
-import com.hnjd.news.dao.page;
 import com.hnjd.news.entity.News;
-
+import com.hnjd.news.entity.page;
+//http://localhost:8080/selectnews?thispage=2&showpage=10
+//http://localhost:8080/first1/selectnews?thispage=1&showpage=10
 /**
  * Servlet implementation class selectnews
  */
@@ -46,6 +47,14 @@ public class selectnews extends HttpServlet {
 			pa.setPagelist(countlist);
 			pa.setThispage(thispage1);
 			pa.setShowpage(showpage1);
+			pa.setCountpagesize(pa.getCountpagesize());
+			System.out.println(pa.getCountpagesize());
+			System.out.println(pa.getShowpage());
+			
+			request.setAttribute("page", pa);
+			request.setAttribute("countlist", countlist);
+			
+			request.getRequestDispatcher("/page.jsp").forward(request, response);
 		} catch (NumberFormatException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

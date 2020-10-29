@@ -142,4 +142,27 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		return result;
 	}
 
+	@Override
+	public List<News> countnews(int thispage, int showpage) throws SQLException {
+		// TODO Auto-generated method stub
+		String sql = "select * from news  limit ?,?";
+		List<News> newsList = new ArrayList<News>();
+		ResultSet res = excuteQuery(sql,thispage,showpage);
+		while(res.next()) {
+			News news = new News();
+			news.setNid(res.getInt("nid"));
+			news.setNtitle(res.getString("ntitle"));
+			news.setNsummary(res.getString("nsummary"));
+			news.setNpicPath(res.getString("npicPath"));
+			news.setNcreateDate(res.getDate("ncreateDate"));
+			news.setNmodifyDate(res.getDate("nmodifyDate"));
+			news.setNcontent(res.getString("ncontent"));
+			news.setNauthor(res.getString("nauthor"));
+			news.setNtid(res.getInt("ntid"));
+			newsList.add(news);
+		}
+		return newsList;
+		
+	}
+
 }

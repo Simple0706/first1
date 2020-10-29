@@ -56,7 +56,7 @@ public class EditNewsServlet extends HttpServlet {
 
 		String ncreateDate = request.getParameter("ncreateDate");
 //		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//		
+////		
 //			news.setNcreateDate(sdf.parse(ncreateDate));
 		news.setNcreateDate(new Date());
 

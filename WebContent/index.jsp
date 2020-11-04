@@ -19,10 +19,7 @@
 </head>
 <body>
 	
-	<%
-		NewsDao newsDao = new NewsDaoImpl();
-		List<News> newsList = newsDao.getAllNews();
-	%>
+	
 		<!-- for(int news = 0;i<items.length;news++) -->
 		
 	

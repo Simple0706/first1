@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<>
+
 <title>新闻详细信息</title>
 </head>
 <body>
@@ -18,14 +18,14 @@
 	
 	
  <tr>
-<%-- <c:forEach items="comlist" var="comlists">
+ <c:forEach items="${comlist}" var="comlists">
 	<td>用户id：${comlists.cid}</td>
 	<td>用户名字：${comlists.cnid}</td>
 	<td>用户地址：${comlists.ccontent}</td>
 	<td>${comlists.cdate}</td>
 	<td>${comlists.cip}</td>
 	<td>${comlists.cauthor}</td>
-	 </c:forEach> --%>
+	 </c:forEach> 
 	</tr> 
 	<tr>
 	<td><input type="text" checked="你来说一说吧"></td>

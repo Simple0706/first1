@@ -41,7 +41,12 @@ public class SelectNewsServlet extends HttpServlet {
 		News newsById = new News();
 		TopicDao topicdao = new TopicDaoImpl();
 		List<Topic> topiclist = new ArrayList();
+		List<Comment> comlist = new ArrayList();
+		CommentDao com = new CommentDaoImpl();
+		
 		try {
+			comlist = com.getCommentsByNid(nid);
+			request.setAttribute("comlist", comlist);
 			newsById = newsDao.getNewsById(nid);
 			request.setAttribute("newsById", newsById);
 			 topiclist = topicdao.getAllTopics();

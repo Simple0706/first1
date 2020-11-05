@@ -48,8 +48,7 @@ public class selectnews extends HttpServlet {
 			pa.setThispage(thispage1);
 			pa.setShowpage(showpage1);
 			pa.setCountpagesize(pa.getCountpagesize());
-			System.out.println(pa.getCountpagesize());
-			System.out.println(pa.getShowpage());
+		
 			
 			request.setAttribute("page", pa);
 			request.setAttribute("countlist", countlist);

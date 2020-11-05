@@ -9,31 +9,37 @@
 </head>
 <body>
 <table>
-	<tr>
-				
+	
+<form action="${pageContext.request.contextPath}/deleteNewsServlet" method="post">
+		<table>
+			<tr>
+				<th><input type="submit" value="删除所选"></th>
 				<th>新闻标题</th>
 				<th>新闻作者</th>
 				<th>创建时间</th>
 				<th>修改时间</th>
-				
+				<th>操作</th>
 			</tr>
-	<c:forEach var="countlist" items="${countlist}" >
-				
-			
-				
+			<c:forEach var="news" items="${countlist}">
 				<tr>
-					
-					<%-- <td>${countlist.ntid}</td> --%>
+					<td><input type="checkbox" name="nids" value="${news.nid}"></td>
+					<td>${news.ntid}</td>
 					<td>
-						<a href="${pageContext.request.contextPath}/selectNewsServlet?nid=${countlist.nid}">${countlist.ntitle}</a>
+						<a href="${pageContext.request.contextPath}/selectNewsServlet?nid=${news.nid}">${news.ntitle}</a>
 					</td>
 					
-					<td>${countlist.nauthor}</td>
-					<td>${countlist.ncreateDate}</td>
-					<td>${countlist.nmodifyDate}</td>
-					
+					<td>${news.nauthor}</td>
+					<td>${news.ncreateDate}</td>
+					<td>${news.nmodifyDate}</td>
+					<td>	
+						<a href="${pageContext.request.contextPath}/selectNewsServlet?nid=${news.nid}&option=1">修改</a>
+						<a href="${pageContext.request.contextPath}/deleteNewsServlet?nid=${news.nid}">删除</a>
+					</td>
 				</tr>
 			</c:forEach>
+		</table>
+	</form>
+
 			
 			<tr>
 			<td>

@@ -26,7 +26,7 @@
 		<!-- for(int news = 0;i<items.length;news++) -->
 		
 	
-	<form action="${pageContext.request.contextPath}/deleteNewsServlet" method="post">
+	<%-- <form action="${pageContext.request.contextPath}/deleteNewsServlet" method="post">
 		<table>
 			<tr>
 				<th><input type="submit" value="删除所选"></th>
@@ -54,6 +54,13 @@
 				</tr>
 			</c:forEach>
 		</table>
-	</form>
+	</form> --%>
+	
+	
+	<jsp:forward page="selectnews">
+	
+	<jsp:param name="thispage" value="1"/>
+	<jsp:param name="showpage" value="10"/>
+	</jsp:forward>
 </body>
 </html>

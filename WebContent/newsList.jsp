@@ -9,6 +9,7 @@
 <title>新闻详细信息</title>
 </head>
 <body>
+<form action="CommentAdd" method="post">
 <table>
 <tr>
 	<td>新闻ID：${newsById.nid}</td>
@@ -16,24 +17,28 @@
 	<td>新闻内容：${newsById.ncontent}</td>
 	</tr>
 	
-	
+	<c:forEach items="${comlist}" var="comlists">
  <tr>
- <c:forEach items="${comlist}" var="comlists">
-	<td>用户id：${comlists.cid}</td>
-	<td>用户名字：${comlists.cnid}</td>
-	<td>用户地址：${comlists.ccontent}</td>
+ 
+	<td>${comlists.cid}</td>
+	<td>${comlists.cnid}</td>
+	<td>${comlists.ccontent}</td>
 	<td>${comlists.cdate}</td>
 	<td>${comlists.cip}</td>
 	<td>${comlists.cauthor}</td>
-	 </c:forEach> 
+	
+
 	</tr> 
+		 </c:forEach> 
 	<tr>
-	<td><input type="text" checked="你来说一说吧"></td>
+	<td><input type="hidden" name="nid" value="${newsById.nid}"></td>
+	<td><input type="hidden" name="author" value="${newsById.nauthor}"></td>
+	<td><input type="text" name="text"></td>
 	</tr>
 	<tr>
-	<td><input type="button" value="提交"></td>
+	<td><input type="submit" ></td>
 	</tr>
 </table>
-	
+	</form>
 </body>
 </html>

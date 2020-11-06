@@ -9,7 +9,7 @@
 <title>新闻详细信息</title>
 </head>
 <body>
-<form action="CommentAdd" method="post">
+
 <table>
 <tr>
 	<td>新闻ID：${newsById.nid}</td>
@@ -18,27 +18,34 @@
 	</tr>
 	
 	<c:forEach items="${comlist}" var="comlists">
- <tr>
- 
-	<td>${comlists.cid}</td>
-	<td>${comlists.cnid}</td>
-	<td>${comlists.ccontent}</td>
-	<td>${comlists.cdate}</td>
-	<td>${comlists.cip}</td>
-	<td>${comlists.cauthor}</td>
+	 <tr>
+	 <td>评论序号<input disabled="disabled" type="text" value="${comlists.cid}"></td>
 	
-
-	</tr> 
+	<td>评论时间<input disabled="disabled" type="text" value="${comlists.cdate}"></td>
+	
+	 <td>评论ip<input disabled="disabled" type="text" value="${comlists.cip}"></td>
+	<td>评论内容<input disabled="disabled" type="text" value="${comlists.ccontent}"></td>
+	
+	 <td>评论人<input disabled="disabled" type="text" value="${comlists.cauthor}"></td>
+	
+	 </tr>
 		 </c:forEach> 
+		 </table>
+	 <table>
+	 <form action="selectNewsServlet" method="post">
+	 	
 	<tr>
-	<td><input type="hidden" name="nid" value="${newsById.nid}"></td>
-	<td><input type="hidden" name="author" value="${newsById.nauthor}"></td>
-	<td><input type="text" name="text"></td>
+	<td><input type="hidden" name="cid" value="${newsById.nid}"></td>
 	</tr>
+	<tr><td><input type="text" name="author" value="${newsById.nauthor}"></td></tr>
+	<tr><td><input type="text" name="ip" value="${pageContext.request.remoteAddr}"></td></tr>
+	<tr><td><textarea rows="10" cols="30" name="text"></textarea></td></tr>
+	
 	<tr>
-	<td><input type="submit" ></td>
+	<td><input type="submit" value="提交评论" ></td>
 	</tr>
-</table>
+	
 	</form>
+	</table>
 </body>
 </html>

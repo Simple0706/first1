@@ -1,7 +1,9 @@
 package com.hnjd.news.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.PageContext;
 
 import com.hnjd.news.dao.*;
 
@@ -43,10 +46,10 @@ public class SelectNewsServlet extends HttpServlet {
 		List<Topic> topiclist = new ArrayList();
 		List<Comment> comlist = new ArrayList();
 		CommentDao com = new CommentDaoImpl();
-		
 		try {
 			comlist = com.getCommentsByNid(nid);
 			request.setAttribute("comlist", comlist);
+			
 			newsById = newsDao.getNewsById(nid);
 			request.setAttribute("newsById", newsById);
 			 topiclist = topicdao.getAllTopics();
@@ -73,7 +76,21 @@ public class SelectNewsServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		CommentDao com = new CommentDaoImpl();
+		Comment comment = new Comment();
+		comment.setCnid(Integer.valueOf(request.getParameter("cid")));
+		comment.setCdate(new Date());
+		comment.setCcontent(request.getParameter("text"));
+		comment.setCauthor(request.getParameter("author"));
+		comment.setCip(request.getParameter("ip"));
+		request.getRequestDispatcher("newsList.jsp").forward(request, response);
+		try {
+			com.addComment(comment);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

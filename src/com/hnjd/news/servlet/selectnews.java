@@ -48,10 +48,10 @@ public class selectnews extends HttpServlet {
 			pa.setThispage(thispage1);
 			pa.setShowpage(showpage1);
 			pa.setCountpagesize(pa.getCountpagesize());
-		
+			
 			
 			request.setAttribute("page", pa);
-			request.setAttribute("countlist", countlist);
+			request.getSession().setAttribute("countlist", countlist);
 			
 			request.getRequestDispatcher("/page.jsp").forward(request, response);
 		} catch (NumberFormatException | SQLException e) {

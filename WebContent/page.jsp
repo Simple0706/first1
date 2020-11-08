@@ -43,10 +43,15 @@
 			
 			<tr>
 			<td>
+					<a href="${pageContext.request.contentType}/first1/selectnews?thispage=${page.thispage-1}&showpage=10">上一页</a>
 					<c:forEach begin="1" end="${page.countpagesize}" var="index">
 					<a href="${pageContext.request.contentType}/first1/selectnews?thispage=${index}&showpage=10">${index}</a>
-					</c:forEach>
 					
+					</c:forEach>
+				<%-- 	<c:if test="${page.thispage<page.Countpagesize}">  --%>
+					<a href="${pageContext.request.contentType}/first1/selectnews?thispage=${page.thispage+1}&showpage=10">下一页</a>
+					<%-- </c:if>
+					<a href="${pageContext.request.contentType}/first1/selectnews?thispage=1&showpage=10">返回第一页</a> --%>
 				</td>	
 							
 			

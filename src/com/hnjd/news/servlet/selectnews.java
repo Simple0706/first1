@@ -41,13 +41,24 @@ public class selectnews extends HttpServlet {
 		String showpage=request.getParameter("showpage");
 		int thispage1=Integer.valueOf(thispage);
 		int showpage1=Integer.valueOf(showpage);
+		page pa = new page();
+		
 		try {
-			List<News> countlist = newsDao.countnews((thispage1-1)*showpage1,showpage1);
-			page pa = new page();
-			pa.setPagelist(countlist);
+			if(thispage1<1 ){
+				thispage1=1;
+				response.getWriter().append("超出最小页数重置为首页");
+			}
+			
 			pa.setThispage(thispage1);
 			pa.setShowpage(showpage1);
+			List<News> countlist = newsDao.countnews((thispage1-1)*showpage1,showpage1);
+			pa.setPagelist(countlist);
 			pa.setCountpagesize(pa.getCountpagesize());
+			if(thispage1>pa.getCountpagesize()){
+				thispage1=1;
+				response.getWriter().append("超出最大页数重置为首页");
+				pa.setThispage(thispage1);
+			}
 			
 			
 			request.setAttribute("page", pa);

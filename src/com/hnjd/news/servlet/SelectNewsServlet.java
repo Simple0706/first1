@@ -76,7 +76,8 @@ public class SelectNewsServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		String nidStr = request.getParameter("nid");
+		int nid = Integer.valueOf(nidStr);
 		CommentDao com = new CommentDaoImpl();
 		Comment comment = new Comment();
 		comment.setCnid(Integer.valueOf(request.getParameter("cid")));
@@ -84,7 +85,7 @@ public class SelectNewsServlet extends HttpServlet {
 		comment.setCcontent(request.getParameter("text"));
 		comment.setCauthor(request.getParameter("author"));
 		comment.setCip(request.getParameter("ip"));
-		request.getRequestDispatcher("newsList.jsp").forward(request, response);
+		request.getRequestDispatcher("newsList.jsp?nid="+nid).forward(request, response);
 		try {
 			com.addComment(comment);
 		} catch (SQLException e) {

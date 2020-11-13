@@ -9,7 +9,11 @@
 </head>
 <body>
 <table>
-	
+	<c:forEach items="${allTopics}" var="top"> 
+	<a href="<script> document.void()</script>">
+	${top.tname}
+	</a>
+	</c:forEach>
 <form action="${pageContext.request.contextPath}/deleteNewsServlet" method="post">
 		<table>
 			<tr>

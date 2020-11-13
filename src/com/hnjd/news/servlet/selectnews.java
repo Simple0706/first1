@@ -1,6 +1,7 @@
 package com.hnjd.news.servlet;
 
 import java.io.IOException;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -12,7 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.hnjd.news.dao.NewsDao;
 import com.hnjd.news.dao.NewsDaoImpl;
+import com.hnjd.news.dao.TopicDao;
+import com.hnjd.news.dao.TopicDaoImpl;
 import com.hnjd.news.entity.News;
+import com.hnjd.news.entity.Topic;
 import com.hnjd.news.entity.page;
 //http://localhost:8080/selectnews?thispage=2&showpage=10
 //http://localhost:8080/first1/selectnews?thispage=1&showpage=10
@@ -42,7 +46,14 @@ public class selectnews extends HttpServlet {
 		int thispage1=Integer.valueOf(thispage);
 		int showpage1=Integer.valueOf(showpage);
 		page pa = new page();
-		
+		TopicDao top = new TopicDaoImpl();
+		List<Topic> allTopics = null;
+		try {
+			allTopics = top.getAllTopics();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try {
 			if(thispage1<1 ){
 				thispage1=1;
@@ -62,8 +73,9 @@ public class selectnews extends HttpServlet {
 			
 			
 			request.setAttribute("page", pa);
+			request.setAttribute("page", pa);
 			request.getSession().setAttribute("countlist", countlist);
-			
+			request.getSession().setAttribute("allTopics", allTopics);
 			request.getRequestDispatcher("/page.jsp").forward(request, response);
 		} catch (NumberFormatException | SQLException e) {
 			// TODO Auto-generated catch block

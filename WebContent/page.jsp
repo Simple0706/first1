@@ -10,10 +10,14 @@
 <body>
 <table>
 	<c:forEach items="${allTopics}" var="top"> 
-	<a href=" javascript:void()">
+	<a href=" javascript:void()" id="newlist">
 	${top.tname}
 	</a>
+	
+	
 	</c:forEach>
+	
+	
 <form action="${pageContext.request.contextPath}/deleteNewsServlet" method="post">
 		<table>
 			<tr>

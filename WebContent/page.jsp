@@ -10,7 +10,7 @@
 <body>
 <table>
 	<c:forEach items="${allTopics}" var="top"> 
-	<a href="<script> document.void()</script>">
+	<a href=" javascript:void()">
 	${top.tname}
 	</a>
 	</c:forEach>

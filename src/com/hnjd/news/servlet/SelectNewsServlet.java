@@ -76,8 +76,11 @@ public class SelectNewsServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String nidStr = request.getParameter("nid");
+		String nidStr = request.getParameter("cid");
 		int nid = Integer.valueOf(nidStr);
+		News newsById = new News();
+		NewsDao newsDao = new NewsDaoImpl();
+		List<Comment> comlist = new ArrayList();
 		CommentDao com = new CommentDaoImpl();
 		Comment comment = new Comment();
 		comment.setCnid(Integer.valueOf(request.getParameter("cid")));
@@ -85,10 +88,17 @@ public class SelectNewsServlet extends HttpServlet {
 		comment.setCcontent(request.getParameter("text"));
 		comment.setCauthor(request.getParameter("author"));
 		comment.setCip(request.getParameter("ip"));
-		request.getRequestDispatcher("newsList.jsp?nid="+nid).forward(request, response);
+		
 		try {
 			com.addComment(comment);
-		} catch (SQLException e) {
+			
+				comlist = com.getCommentsByNid(nid);
+				request.setAttribute("comlist", comlist);
+				
+				newsById = newsDao.getNewsById(nid);
+				request.setAttribute("newsById", newsById);
+				request.getRequestDispatcher("newsList.jsp?nid="+nid).forward(request, response);
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

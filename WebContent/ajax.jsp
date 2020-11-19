@@ -19,6 +19,7 @@
 		$.ajax({
 			"url" : "selectNewsServlet",
 			"date":"",
+			"datatype":"",
 			
 			
 		})

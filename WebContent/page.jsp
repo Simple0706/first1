@@ -10,7 +10,7 @@
 <body>
 <table>
 	<c:forEach items="${allTopics}" var="top"> 
-	<a href=" javascript:void()" id="newlist">
+	<a href=" javascript:void()" class="a" id="newlist" data-tid="${top.tid}">
 	${top.tname}
 	</a>
 	
@@ -66,5 +66,41 @@
 				
 			</tr>
 </table>
+	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+	
+
+		$(".a").each(function(){
+			$(this).click(function(){	
+				var tnid=$(this).data("tid");
+				
+				$.ajax({
+					url:"AjaxSelectNews",
+					type:"Get",
+					data:"tnid="+tnid,
+					datatype:"json",
+					success:function(data){
+						alert(data)
+						alert(data[1].ntitle)
+					
+						
+					},
+					error:function(){
+						alert("错误")
+					}
+					
+				})
+			
+			})
+		})
+		
+		
+	})
+	</script>
+
+
+
 </body>
 </html>

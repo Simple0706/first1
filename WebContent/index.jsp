@@ -13,6 +13,7 @@
 <style type="text/css">
 	td a:hover{
 		cursor: pointer;
+		
 		text-decoration: underline;
 	}
 </style>

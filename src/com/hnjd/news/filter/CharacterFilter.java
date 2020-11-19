@@ -19,21 +19,23 @@ public class CharacterFilter implements Filter {
      * Default constructor. 
      */
     public CharacterFilter() {
-       System.out.println("Filter����...");
+       System.out.println("Filter创建...");
     }
 
 	/**
 	 * @see Filter#destroy()
 	 */
 	public void destroy() {
-		System.out.println("Filter����...");
+		System.out.println("Filter销毁...");
 	}
 
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		//只支持post请求。因为是对请求体进行设置编码。
 		request.setCharacterEncoding("utf-8");
+		
 		response.setContentType("text/html;charset=utf-8");
 
 		chain.doFilter(request, response);

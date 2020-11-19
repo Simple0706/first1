@@ -18,7 +18,7 @@
 	</c:forEach>
 	
 	
-<form action="${pageContext.request.contextPath}/deleteNewsServlet" method="post">
+<form action="${pageContext.request.contextPath}/deleteNewsServlet" method="post" id="form">
 		<table>
 			<tr>
 				<th><input type="submit" value="删除所选"></th>
@@ -45,9 +45,9 @@
 					</td>
 				</tr>
 			</c:forEach>
-		</table>
+		
 	</form>
-
+</table>
 			
 			<tr>
 			<td>
@@ -82,9 +82,48 @@
 					data:"tnid="+tnid,
 					datatype:"json",
 					success:function(data){
-						alert(data)
-						alert(data[1].ntitle)
-					
+						var data1=JSON.parse(data)
+						
+						var html="<tr>"+
+						"<td><input type='checkbox' name='nids' value='{{nid}}'></td>"+
+						"<td>{{ntid}}</td>"+
+						"<td>"+
+							"<a href='${pageContext.request.contextPath}/selectNewsServlet?nid={{nid}}'>{{ntitle}}</a>"+
+						"</td>"+
+						
+						"<td>{{nauthor}}</td>"+
+						"<td>{{ncreateDate}}</td>"+
+						"<td>{{nmodifyDate}}</td>"+
+						"<td>"+
+							"<a href='${pageContext.request.contextPath}/selectNewsServlet?nid={{nid}}'&option=1>修改</a>"+
+							"<a href='${pageContext.request.contextPath}/deleteNewsServlet?nid={{nid}}'>删除</a>"
+						"</td>"+
+					"</tr>"
+						
+						$("#from").html("")
+						
+						for(var i=0;i<data1.length;i++){
+							
+							
+							$("#from"). append(html
+									. replace(/{{nid}}/g,data[i].nid)
+									.replace(/{{ntit1e}}/g,data[i].ntit1e)
+									.replace(/{{ncreateDate}}/g,data[i].ncreateDate)
+									. replace(/{{nauthor}}/g, data[i] .nauthor)
+									. replace(/{{nmodifyDate}}/g,data[i].nmodifyDate))
+							
+							
+							
+							
+							
+							
+							
+						//	alert(data1[i].nid)
+							//alert(data1[i].ntitle)
+						//	alert(data1[i].nauthor)
+						//	alert(data1[i].ncreateDate)
+						}
+						
 						
 					},
 					error:function(){

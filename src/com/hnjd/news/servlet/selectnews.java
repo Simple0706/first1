@@ -92,8 +92,8 @@ public class selectnews extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		NewsDao newsDao = new NewsDaoImpl();
-		String a = request.getParameter("obj");
-		JSONObject json =  JSONObject.fromObject(a);
+		String aa = request.getParameter("obj");
+		JSONObject json =  JSONObject.fromObject(aa);
 		String thispage = (String)json.get("thispage");
 		String showpage =(String)json.get("showpage");
 		int thispage1=Integer.valueOf(thispage);

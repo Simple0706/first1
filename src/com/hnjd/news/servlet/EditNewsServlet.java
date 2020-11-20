@@ -35,7 +35,7 @@ public class EditNewsServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 	}
 
 	/**
@@ -65,13 +65,14 @@ public class EditNewsServlet extends HttpServlet {
 		news.setNtitle(request.getParameter("ntitle"));
 		NewsDao newsDao = new NewsDaoImpl();
 		newsDao.editNews(Integer.valueOf(nid), news);
-
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		request.getRequestDispatcher("index.jsp").forward(request, response);
+		
 		}
 		catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	
 	}
 
 }

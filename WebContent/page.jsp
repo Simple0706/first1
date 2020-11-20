@@ -154,7 +154,7 @@
 		
 		var obj = {
 				"thispage":"1",
-				"showpage":showpage,
+				"showpage":showpage
 		}
 		var objjson=JSON.stringify(obj)
 		$.ajax({

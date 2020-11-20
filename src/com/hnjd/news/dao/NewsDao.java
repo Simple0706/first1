@@ -31,6 +31,8 @@ public interface NewsDao {
 	//5.����Idɾ������
 	public int deleteNews(int nid) throws SQLException;
 	
+	public List<News> selectLinknews(String a) throws Exception;
+	
 	public List<News> countnews(int thispage,int showpage ) throws SQLException ;
 }
 	

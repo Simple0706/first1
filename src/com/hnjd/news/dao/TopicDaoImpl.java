@@ -51,7 +51,13 @@ public class TopicDaoImpl extends BaseDao implements TopicDao {
 	@Override
 	public int addTopic(String name) throws SQLException {
 		// TODO Auto-generated method stub
-		return 0;
+		String sql = "insert into topic(tname) values(?) ";
+		
+		int excuteUpdate = excuteUpdate(sql, name);
+		
+		return excuteUpdate;
+		
+		
 	}
 
 	@Override

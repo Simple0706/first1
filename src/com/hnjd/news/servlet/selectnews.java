@@ -18,6 +18,9 @@ import com.hnjd.news.dao.TopicDaoImpl;
 import com.hnjd.news.entity.News;
 import com.hnjd.news.entity.Topic;
 import com.hnjd.news.entity.page;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 //http://localhost:8080/selectnews?thispage=2&showpage=10
 //http://localhost:8080/first1/selectnews?thispage=1&showpage=10
 /**
@@ -88,7 +91,51 @@ public class selectnews extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		NewsDao newsDao = new NewsDaoImpl();
+		String a = request.getParameter("obj");
+		JSONObject json =  JSONObject.fromObject(a);
+		String thispage = (String)json.get("thispage");
+		String showpage =(String)json.get("showpage");
+		int thispage1=Integer.valueOf(thispage);
+		int showpage1=Integer.valueOf(showpage);
+		
+		page pa = new page();
+		TopicDao top = new TopicDaoImpl();
+		List<Topic> allTopics = null;
+		try {
+			allTopics = top.getAllTopics();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			pa.setThispage(thispage1);
+			pa.setShowpage(showpage1);
+			List<News> countlist = newsDao.countnews((thispage1-1)*showpage1,showpage1);
+			pa.setPagelist(countlist);
+			pa.setCountpagesize(pa.getCountpagesize());
+			
+			
+			JSONArray jsono =new  JSONArray();
+			
+			for(News n : countlist)
+			{
+				JSONObject jo = new JSONObject();
+				jo.put("nid", n.getNid());
+				jo.put("ntitle", n.getNtitle());
+				jo.put("nauthor", n.getNauthor());
+				jo.put("ncreateDate",n.getNcreateDate().toString());
+				jsono.add(jo);
+			}
+			response.getWriter().append(jsono.toString());
+			
+		} catch (NumberFormatException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
 	}
 
 }

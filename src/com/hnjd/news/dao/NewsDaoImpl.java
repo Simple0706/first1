@@ -185,6 +185,28 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		return newsList;
 		
 	}
+
+	@Override
+	public List<News> selectLinknews(String a) throws Exception {
+		// TODO Auto-generated method stub
+		String sql = "select * from news where ntitle like ?";
+		List<News> newsList = new ArrayList<News>();
+		ResultSet res = excuteQuery(sql,a);
+		while(res.next()) {
+			News news = new News();
+			news.setNid(res.getInt("nid"));
+			news.setNtitle(res.getString("ntitle"));
+			news.setNsummary(res.getString("nsummary"));
+			news.setNpicPath(res.getString("npicPath"));
+			news.setNcreateDate(res.getDate("ncreateDate"));
+			news.setNmodifyDate(res.getDate("nmodifyDate"));
+			news.setNcontent(res.getString("ncontent"));
+			news.setNauthor(res.getString("nauthor"));
+			news.setNtid(res.getInt("ntid"));
+			newsList.add(news);
+		}
+		return newsList;
+	}
 	
 
 }

@@ -55,10 +55,13 @@
 	</form> --%>
 	
 	
-	<jsp:forward page="selectnews">
+	<%-- <jsp:forward page="selectnews">
 	
 	<jsp:param name="thispage" value="1"/>
 	<jsp:param name="showpage" value="10"/>
-	</jsp:forward>
+	</jsp:forward> --%>
+	
+	<script type="text/javascript">
+			window.location.href="selectnews?thispage=1&showpage=10" </script>
 </body>
 </html>

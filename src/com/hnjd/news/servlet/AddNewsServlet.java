@@ -18,7 +18,7 @@ import com.hnjd.news.entity.News;
 /**
  * Servlet implementation class AddNewsServlet
  */
-@WebServlet("/addNewsServlet")//¶ÔÍâ½çÌá¹©µÄÒ»¸ö·ÃÎÊÂ·¾¶
+@WebServlet("/addNewsServlet")//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á¹©ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½
 public class AddNewsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -59,19 +59,20 @@ public class AddNewsServlet extends HttpServlet {
 		
 		try {
 			newsDao.addNews(news);
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		} catch (Exception e) {
-			// TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
+			
 			e.printStackTrace();
 		}
 		
-		response.getWriter().append("Ìí¼Ó³É¹¦");
 		
 		
-		//ÖØ¶¨Ïò
+		
+		//ï¿½Ø¶ï¿½ï¿½ï¿½
 		//response.sendRedirect("http://localhost:8088/first/index.jsp");
 		
-		//×ª·¢
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		//×ªï¿½ï¿½
+		
 	}
 
 }

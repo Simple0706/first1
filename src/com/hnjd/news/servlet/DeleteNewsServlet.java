@@ -22,7 +22,7 @@ public class DeleteNewsServlet extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 * É¾³ýÒ»ÌõÊý¾Ý
+	 * É¾ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nid = request.getParameter("nid");
@@ -30,10 +30,10 @@ public class DeleteNewsServlet extends HttpServlet {
 		try {
 			newsDao.deleteNews(Integer.valueOf(nid));
 		} catch (NumberFormatException e) {
-			// TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
+			
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
+			
 			e.printStackTrace();
 		}
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
@@ -41,7 +41,7 @@ public class DeleteNewsServlet extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 * É¾³ý¶àÌõÊý¾Ý
+	 * É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String[] nids = request.getParameterValues("nids");
@@ -51,10 +51,10 @@ public class DeleteNewsServlet extends HttpServlet {
 				newsDao.deleteNews(Integer.valueOf(nid));
 			}
 		} catch (NumberFormatException e) {
-			// TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
+			// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½Éµï¿½ catch ï¿½ï¿½
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
+			// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½Éµï¿½ catch ï¿½ï¿½
 			e.printStackTrace();
 		}
 		request.getRequestDispatcher("/index.jsp").forward(request, response);

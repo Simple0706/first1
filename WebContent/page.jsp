@@ -48,6 +48,7 @@
 					<td>	
 						<a href="${pageContext.request.contextPath}/selectNewsServlet?nid=${news.nid}&option=1">修改</a>
 						<a href="${pageContext.request.contextPath}/deleteNewsServlet?nid=${news.nid}">删除</a>
+						<button class="but1" type="button" data-nid="${news.ntid}">删除</button>
 					</td>
 				</tr>
 			</c:forEach>
@@ -106,7 +107,7 @@
 						"<td>{{ncreateDate}}</td>"+
 						/* "<td>{{nmodifyDate}}</td>"+ */
 						"<td>"+
-							"<a href='${pageContext.request.contextPath}/selectNewsServlet?nid={{ntid}}'&option=1>修改</a>"+
+							"<a href='${pageContext.request.contextPath}/selectNewsServlet?nid={{ntid}}&option=1'>修改</a>"+
 							"<a href='${pageContext.request.contextPath}/deleteNewsServlet?nid={{ntid}}'>删除</a>"
 						"</td>"+
 					"</tr>"
@@ -176,7 +177,7 @@
 						"<td>{{ncreateDate}}</td>"+
 						/* "<td>{{nmodifyDate}}</td>"+ */
 						"<td>"+
-							"<a href='${pageContext.request.contextPath}/selectNewsServlet?nid={{ntid}}'&option=1>修改</a>"+
+							"<a href='${pageContext.request.contextPath}/selectNewsServlet?nid={{ntid}}&option=1'>修改</a>"+
 							"<a href='${pageContext.request.contextPath}/deleteNewsServlet?nid={{ntid}}'>删除</a>"
 						"</td>"+
 					"</tr>"
@@ -210,6 +211,27 @@
 		
 		
 	})
+	
+	/*ajax实现删除  */
+	$(".but1").click(function(){
+		var nid = $(this).data("nid");
+		alert(nid)
+		$.ajax({
+			url:"deleteNewsServlet1",
+			type:"post",
+			data:"nid="+nid,
+			datatype:"text",
+			success:function(data){
+				alert(data)
+			},
+			error:function(){
+				
+			}
+			
+		})
+		
+	})
+	
 	
 	</script>
 

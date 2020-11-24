@@ -62,6 +62,7 @@
 	</jsp:forward> --%>
 	
 	<script type="text/javascript">
-			window.location.href="selectnews?thispage=1&showpage=10" </script>
+			window.location.href="selectnews?thispage=1&showpage=10" 
+	</script>
 </body>
 </html>

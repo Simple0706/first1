@@ -48,7 +48,7 @@
 					<td>	
 						<a href="${pageContext.request.contextPath}/selectNewsServlet?nid=${news.nid}&option=1">修改</a>
 						<a href="${pageContext.request.contextPath}/deleteNewsServlet?nid=${news.nid}">删除</a>
-						<button class="but1" type="button" data-nid="${news.ntid}">删除</button>
+						<button class="but1" type="button" data-nid="${news.nid}">删除</button>
 					</td>
 				</tr>
 			</c:forEach>
@@ -96,6 +96,7 @@
 					success:function(data){
 						var data1=JSON.parse(data)
 						$("table").html(" ")
+						$("div").html(" ")
 						var html="<tr>"+
 						//"<td><input type='checkbox' name='nids' value='{{nid}}'></td>"+
 						"<td>{{ntid}}</td>"+
@@ -149,6 +150,7 @@
 		
 		
 	})
+	//分页自选显示新闻
 	
 	$("#showpage").change(function(){
 		var showpage=$(this).val();
@@ -215,14 +217,16 @@
 	/*ajax实现删除  */
 	$(".but1").click(function(){
 		var nid = $(this).data("nid");
-		alert(nid)
+		
 		$.ajax({
 			url:"deleteNewsServlet1",
-			type:"post",
+			type:"Post",
 			data:"nid="+nid,
 			datatype:"text",
 			success:function(data){
-				alert(data)
+				if(data=="true"){
+					window.location.href="index.jsp";
+				}
 			},
 			error:function(){
 				

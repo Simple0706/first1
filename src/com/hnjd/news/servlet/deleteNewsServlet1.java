@@ -36,6 +36,8 @@ public class deleteNewsServlet1 extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int deleteNews = 0;
 		String nid = request.getParameter("nid");
+		
+		 
 		NewsDao newsDao = new NewsDaoImpl();
 		try {
 			deleteNews = newsDao.deleteNews(Integer.valueOf(nid));

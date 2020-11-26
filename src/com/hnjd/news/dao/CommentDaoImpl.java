@@ -41,9 +41,9 @@ public class CommentDaoImpl extends BaseDao implements CommentDao {
     public int addComment(Comment comment) throws SQLException {
         String sql = "INSERT INTO `comments`(`CNID`, `CCONTENT`, `CDATE`," +
         		"`CIP`,`CAUTHOR`) VALUES(?, ?, ?, ?, ?)";
-        System.out.println(comment.getCnid() + ":" + comment.getCcontent()
-                + ":" + comment.getCdate() + ":" + comment.getCip() + ":"
-                + comment.getCauthor());
+//        System.out.println(comment.getCnid() + ":" + comment.getCcontent()
+//                + ":" + comment.getCdate() + ":" + comment.getCip() + ":"
+//                + comment.getCauthor());
         Object[] params = new Object[] { comment.getCnid(),
                 comment.getCcontent(), comment.getCdate(), comment.getCip(),
                 comment.getCauthor() };

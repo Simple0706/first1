@@ -58,22 +58,23 @@
 			
 			<tr>
 			<td>
-					<a href="${pageContext.request.contentType}/first1/selectnews?thispage=${page.thispage-1}&showpage=10">上一页</a>
+					<a href="${pageContext.request.contentType}/first1/selectnews?thispage=10" id="shang">上一页</a>
 					<c:forEach begin="1" end="${page.countpagesize}" var="index">
-					<a href="${pageContext.request.contentType}/first1/selectnews?thispage=${index}&showpage=10">${index}</a>
 					
+					<a href="${pageContext.request.contentType}/first1/selectnews?thispage=${index}&showpage=10" id="index">${index}</a>
 					</c:forEach>
+					
 				<%-- 	<c:if test="${page.thispage<page.Countpagesize}">  --%>
-					<a href="${pageContext.request.contentType}/first1/selectnews?thispage=${page.thispage+1}&showpage=10">下一页</a>
+					<a href="${pageContext.request.contentType}/first1/selectnews?thispage=${page.thispage+1}&showpage=10" id="xia">下一页</a>
 					<%-- </c:if>
 					<a href="${pageContext.request.contentType}/first1/selectnews?thispage=1&showpage=10">返回第一页</a> --%>
-					<select id="showpage">
+					<select id="showpage" name="showpage">
 					<option>10</option>
 					<option>20</option>
 					<option>30</option>
 					</select>
 				</td>	
-							
+					
 			
 				
 			</tr>
@@ -83,7 +84,8 @@
 	<script type="text/javascript">
 	$(function(){
 	
-
+		$("#shang").show()
+		$("#xia").show()
 		$(".a").each(function(){
 			$(this).click(function(){	
 				var tnid=$(this).data("tid");
@@ -154,6 +156,8 @@
 	
 	$("#showpage").change(function(){
 		var showpage=$(this).val();
+		$("#shang").hide()
+		$("#xia").hide()
 		
 		var obj = {
 				"thispage":"1",
@@ -168,6 +172,7 @@
 			success:function(data){
 				var data1= JSON.parse(data);
 				$("table").html(" ")
+				$("div").html(" ")	
 				var html="<tr>"+
 						//"<td><input type='checkbox' name='nids' value='{{nid}}'></td>"+
 						"<td>{{ntid}}</td>"+
@@ -193,12 +198,6 @@
 							.replace(/{{ncreateDate}}/g,data1[i].ncreateDate)
 							. replace(/{{nauthor}}/g, data1[i] .nauthor))
 							//. replace(/{{nmodifyDate}}/g,data1[i].nmodifyDate))
-					
-					
-					
-					
-					
-					
 					
 				//	alert(data1[i].nid)
 					//alert(data1[i].ntitle)

@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.hnjd.news.entity.News;
+import com.hnjd.news.util.DatabaseUtil;
 
 /**
  * @author Administrator
@@ -37,7 +38,9 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 			news.setNtid(res.getInt("ntid"));
 			newsList.add(news);
 		}
+		DatabaseUtil.closeAll( null, null, res);
 		return newsList;
+		
 	}
 
 	/* ���� Javadoc��
@@ -61,12 +64,14 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 				news.setNauthor(resultSet.getString("nauthor"));
 				news.setNtid(resultSet.getInt("ntid"));
 				newsList.add(news);
+				DatabaseUtil.closeAll( null, null, resultSet);
 			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		return newsList;
 	}
 
@@ -89,6 +94,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 			news.setNsummary(resultSet.getString("nsummary"));
 			news.setNpicPath(resultSet.getString("npicPath"));
 		}
+		DatabaseUtil.closeAll( null, null, resultSet);
 		return news;
 	}
 
@@ -182,6 +188,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 			news.setNtid(res.getInt("ntid"));
 			newsList.add(news);
 		}
+		DatabaseUtil.closeAll( null, null, res);
 		return newsList;
 		
 	}
@@ -205,6 +212,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 			news.setNtid(res.getInt("ntid"));
 			newsList.add(news);
 		}
+		DatabaseUtil.closeAll( null, null, res);
 		return newsList;
 	}
 	

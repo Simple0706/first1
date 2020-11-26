@@ -98,22 +98,11 @@ public class selectnews extends HttpServlet {
 		String showpage =(String)json.get("showpage");
 		int thispage1=Integer.valueOf(thispage);
 		int showpage1=Integer.valueOf(showpage);
-		
-		page pa = new page();
-		TopicDao top = new TopicDaoImpl();
-		List<Topic> allTopics = null;
 		try {
-			allTopics = top.getAllTopics();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
-			pa.setThispage(thispage1);
-			pa.setShowpage(showpage1);
+			
 			List<News> countlist = newsDao.countnews((thispage1-1)*showpage1,showpage1);
-			pa.setPagelist(countlist);
-			pa.setCountpagesize(pa.getCountpagesize());
+			
+			
 			
 			
 			JSONArray jsono =new  JSONArray();

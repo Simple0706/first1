@@ -64,7 +64,10 @@
 					"ip":$(":input[name='ip']").val(),
 					"text":$(":input[name='text']").val(),	
 			}
+			
 			var comment1 = JSON.stringify(comment);
+			alert(comment1)
+			alert(comment)
 			$.ajax({
 				url:"AjaxAddComment",
 				type:"post",

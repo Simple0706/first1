@@ -54,7 +54,8 @@ public class AjaxAddComment extends HttpServlet {
 		JSONObject json =new JSONObject();
 		json=JSONObject.fromObject(jsoncomment);
 		AjaxComment ajaxcomment = (AjaxComment)JSONObject.toBean(json,AjaxComment.class);
-//		CommentDao com = new CommentDaoImpl();
+		CommentDao com = new CommentDaoImpl();
+		
 //		Comment comment = new Comment();
 //		comment.setCdate(new Date());
 //		comment.setCcontent(ajaxcomment.getText());

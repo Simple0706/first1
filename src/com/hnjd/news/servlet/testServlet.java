@@ -43,7 +43,8 @@ public class testServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String a = request.getParameter("obj");
 		JSONObject objjson =new JSONObject(); 
-		objjson=JSONObject.fromObject(a);
+		
+		objjson=JSONObject.fromObject(a );
 		TestJson t=(TestJson)JSONObject.toBean(objjson, TestJson.class);
 //		JSONObject objjson1 =new JSONObject(); 
 		objjson.put("message", "成功1");

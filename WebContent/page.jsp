@@ -66,6 +66,7 @@
 					
 				<%-- 	<c:if test="${page.thispage<page.Countpagesize}">  --%>
 					<a href="${pageContext.request.contentType}/first1/selectnews?thispage=${page.thispage+1}&showpage=10" id="xia">下一页</a>
+					<button type="button" id="ajaxxia">下一页 </button>
 					<%-- </c:if>
 					<a href="${pageContext.request.contentType}/first1/selectnews?thispage=1&showpage=10">返回第一页</a> --%>
 					<select id="showpage" name="showpage">
@@ -83,9 +84,11 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 	<script type="text/javascript">
 	$(function(){
-	
+		
 		$("#shang").show()
 		$("#xia").show()
+		$("#ajaxxia").hide()
+		
 		$(".a").each(function(){
 			$(this).click(function(){	
 				var tnid=$(this).data("tid");
@@ -158,7 +161,65 @@
 		var showpage=$(this).val();
 		$("#shang").hide()
 		$("#xia").hide()
-		
+		$("#ajaxxia").show()
+		$("#ajaxxia").click(function(){
+			var a=1;
+			a++
+			var obj = {
+					"thispage":a,
+					"showpage":showpage
+			}
+			var objjson=JSON.stringify(obj)
+			$.ajax({
+				url:"selectnews",
+				data:{obj:objjson},
+				type:"Post",
+				datatype:"json",
+				success:function(data){
+					var data1= JSON.parse(data);
+					$("table").html(" ")
+					$("div").html(" ")	
+					var html="<tr>"+
+							//"<td><input type='checkbox' name='nids' value='{{nid}}'></td>"+
+							"<td>{{ntid}}</td>"+
+							"<td>"+
+								"<a href='${pageContext.request.contextPath}/selectNewsServlet?nid={{ntid}}'> {{ntitle}} </a>"+
+							"</td>"+
+							
+							"<td>{{nauthor}}</td>"+
+							"<td>{{ncreateDate}}</td>"+
+							/* "<td>{{nmodifyDate}}</td>"+ */
+							"<td>"+
+								"<a href='${pageContext.request.contextPath}/selectNewsServlet?nid={{ntid}}&option=1'>修改</a>"+
+								"<a href='${pageContext.request.contextPath}/deleteNewsServlet?nid={{ntid}}'>删除</a>"
+							"</td>"+
+						"</tr>"
+							
+					for(var i=0;i<data1.length;i++){
+						
+						
+						$("div"). append(html
+								. replace(/{{ntid}}/g,data1[i].nid)
+								.replace(/{{ntitle}}/g,data1[i].ntitle)
+								.replace(/{{ncreateDate}}/g,data1[i].ncreateDate)
+								. replace(/{{nauthor}}/g, data1[i] .nauthor))
+								//. replace(/{{nmodifyDate}}/g,data1[i].nmodifyDate))
+						
+					//	alert(data1[i].nid)
+						//alert(data1[i].ntitle)
+					//	alert(data1[i].nauthor)
+					//	alert(data1[i].ncreateDate)
+					}
+				},
+				error:function(){
+					
+				}
+			})
+			
+			
+			
+			
+		})
 		var obj = {
 				"thispage":"1",
 				"showpage":showpage

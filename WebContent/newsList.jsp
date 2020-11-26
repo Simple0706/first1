@@ -39,7 +39,7 @@
 	<td><input type="hidden" name="cid" value="${newsById.nid}" id="aaaaa"></td>
 	</tr>
 	<tr><td><input type="text" name="author" value="${newsById.nauthor}"></td></tr>
-	<tr><td><input type="text" name="ip" value="${pageContext.request.remoteAddr}"></td></tr>
+	<tr><td><input type="text" name="ip" placeholder="${pageContext.request.remoteAddr}" value="127.0.0.1"></td></tr>
 	<tr><td><textarea rows="10" cols="30" name="text" id=""></textarea></td></tr>
 	
 	<tr>
@@ -63,17 +63,18 @@
 					"author":$(":input[name='author']").val(),
 					"ip":$(":input[name='ip']").val(),
 					"text":$(":input[name='text']").val(),	
+					
 			}
 			
 			var comment1 = JSON.stringify(comment);
-			alert(comment1)
-			alert(comment)
+			
 			$.ajax({
 				url:"AjaxAddComment",
 				type:"post",
 				data:{comment:comment1},
 				typedata:"json",
 				success:function(data){
+				
 					var data1=JSON.parse(data);
 					
 					
@@ -98,12 +99,17 @@
 					"评论内容"+
 					"<textarea disabled='disabled' rows='1' cols='30' name='text' >{{text}}</textarea>"+
 					"</td>"+
-					"</tr>"
-								
+					
+					
+					"<td>评论时间<input disabled='disabled' type='text' value='{{cdate}}'></td>"+
+						"</tr>"
 					$("#ajaxcomment").append(
 							html . replace(/{{nauthor}}/g,data1.author)
 							. replace(/{{ip}}/g,data1.ip)
-							. replace(/{{text}}/g,data1.text))
+							. replace(/{{text}}/g,data1.text)
+								
+							. replace(/{{cdate}}/g,data1.date)
+					)
 				},
 			error:function(){
 				

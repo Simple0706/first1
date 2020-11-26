@@ -225,7 +225,10 @@
 			datatype:"text",
 			success:function(data){
 				if(data=="true"){
-					window.location.href="index.jsp";
+					var con =confirm("确认删除吗？")
+					if(con==true){
+					window.location.reload();
+					}
 				}
 			},
 			error:function(){

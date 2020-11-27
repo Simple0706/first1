@@ -7,10 +7,26 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+<!--
+a{
+  color:black;
+text-decoration: none;
+
+}
+a:VISITED {
+	color:black;
+}
+a:HOVER {
+	color:red;
+}
+-->
+</style>
 <body>
 <form action="SelectLikeNews" style="text-align: center;" method="post">
 查询内容<input type="text" name="like" placeholder="根据新闻标题和作者查询新闻">
 <input type="submit" value="查询">
+<a href="addNews.jsp">添加新闻</a>
 <br>
 <br>
 </form>

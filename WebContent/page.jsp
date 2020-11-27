@@ -9,7 +9,7 @@
 </head>
 <body>
 <form action="SelectLikeNews" style="text-align: center;" method="post">
-查询内容<input type="text" name="like">
+查询内容<input type="text" name="like" placeholder="根据新闻标题和作者查询新闻">
 <input type="submit" value="查询">
 <br>
 <br>
@@ -28,6 +28,7 @@
 		<table>
 			<tr>
 				<th><input type="submit" value="删除所选"></th>
+				<th>新闻主题序号</th>
 				<th>新闻标题</th>
 				<th>新闻作者</th>
 				<th>创建时间</th>

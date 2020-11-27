@@ -200,9 +200,9 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 	@Override
 	public List<News> selectLinknews(String a) throws Exception {
 		// TODO Auto-generated method stub
-		String sql = "select * from news where ntitle like ?";
+		String sql = "select * from news where ntitle like ? or nauthor like ?";
 		List<News> newsList = new ArrayList<News>();
-		ResultSet res = excuteQuery(sql,a);
+		ResultSet res = excuteQuery(sql,a,a);
 		while(res.next()) {
 			News news = new News();
 			news.setNid(res.getInt("nid"));

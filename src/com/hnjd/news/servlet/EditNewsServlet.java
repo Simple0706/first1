@@ -44,6 +44,7 @@ public class EditNewsServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
+			//根据name获取前台的值
 		String nid = request.getParameter("nid");
 
 		News news = new News();
@@ -53,7 +54,7 @@ public class EditNewsServlet extends HttpServlet {
 		news.setNpicPath(request.getParameter("npicPath"));
 		news.setNsummary(request.getParameter("nsummary"));
 		news.setNmodifyDate(new Date());
-
+		//根据name获取前台的值
 		String ncreateDate = request.getParameter("ncreateDate");
 //		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 ////		
@@ -64,6 +65,7 @@ public class EditNewsServlet extends HttpServlet {
 		news.setNtid(Integer.valueOf(request.getParameter("ntid")));
 		news.setNtitle(request.getParameter("ntitle"));
 		NewsDao newsDao = new NewsDaoImpl();
+		//根据id修改新闻，传入一个新新闻
 		newsDao.editNews(Integer.valueOf(nid), news);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 		

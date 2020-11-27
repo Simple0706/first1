@@ -31,15 +31,19 @@ public class AddTopic extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		//根据name获取前台的值
 		String parameter = request.getParameter("TopicName");
 		
+		//创建主题dao实行类
 		TopicDaoImpl topicdao = new TopicDaoImpl(); 
 		try {
+			//添加主题
 			topicdao.addTopic(parameter);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		//响应给前台一个字符串
 		response.getWriter().println("成功添加");
 //		request.getRequestDispatcher("AddTopic.jsp").forward(request, response);
 	}
@@ -49,7 +53,7 @@ public class AddTopic extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		
 	}
 
 }

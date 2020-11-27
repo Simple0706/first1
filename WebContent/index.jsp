@@ -61,6 +61,7 @@
 	<jsp:param name="showpage" value="10"/>
 	</jsp:forward> --%>
 	
+	<%--主页面跳转 --%>
 	<script type="text/javascript">
 			window.location.href="selectnews?thispage=1&showpage=10" 
 	</script>

@@ -35,11 +35,13 @@ public class deleteNewsServlet1 extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int deleteNews = 0;
+		//根据name获取前台的值
 		String nid = request.getParameter("nid");
 		
 		 
 		NewsDao newsDao = new NewsDaoImpl();
 		try {
+			//根据id删除新闻
 			deleteNews = newsDao.deleteNews(Integer.valueOf(nid));
 		} catch (NumberFormatException e) {
 			
@@ -48,6 +50,7 @@ public class deleteNewsServlet1 extends HttpServlet {
 			
 			e.printStackTrace();
 		}
+		//根据影响行数响应前台
 		if(deleteNews>=1){
 		response.getWriter().append("true");
 		}else{

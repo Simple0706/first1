@@ -51,11 +51,16 @@ public class AjaxAddComment extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		//根据name获取前台的值
 		String jsoncomment = request.getParameter("comment");
+		//创建一个json对象
 		JSONObject json =new JSONObject();
+		//将前台获取的值转换为json对象
 		json=JSONObject.fromObject(jsoncomment);
+		//根据json对象创建实体类，并转为为该对象接收数据
 		AjaxComment ajaxcomment = (AjaxComment)JSONObject.toBean(json,AjaxComment.class);
 		CommentDao com = new CommentDaoImpl();
+		//将字符串强转为int类型。自动拆箱
 		Integer nid = Integer.valueOf(ajaxcomment.getCid());
 		Comment comment = new Comment();
 		comment.setCdate(new Date());
@@ -65,21 +70,24 @@ public class AjaxAddComment extends HttpServlet {
 		comment.setCip(ajaxcomment.getIp());
 		
 		Date cdate = comment.getCdate();
+		//改变时间格式
 		String strDateFormat = "yyyy-MM-dd HH:mm:ss";
 		SimpleDateFormat sdf = new SimpleDateFormat(strDateFormat);
 		String format = sdf.format(cdate);
+		//为json对象添加键值
 		json.put("date", format);
 		
 		try {
+			//添加评论对象
 			com.addComment(comment);
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		//响应给前台一个json数据
 		response.getWriter().append(json.toString());
 		try {
-//			com.addComment(comment);
-			
+//			com.addComment(comment);			
 //			response.getWriter().append(comlist.toString());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -36,29 +36,39 @@ public class SelectNewsServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		//根据name获取前台数据
 		String nidStr = request.getParameter("nid");
 		String option = request.getParameter("option");
+		//string强转int
 		Integer nid = Integer.valueOf(nidStr);
+		
 		NewsDao newsDao = new NewsDaoImpl();
 		News newsById = new News();
 		TopicDao topicdao = new TopicDaoImpl();
+		//创建集合对象
 		List<Topic> topiclist = new ArrayList();
 		List<Comment> comlist = new ArrayList();
+		
 		CommentDao com = new CommentDaoImpl();
 		try {
+			//根据id查找所有评论
 			comlist = com.getCommentsByNid(nid);
+			//将对象存入请求对象
 			request.setAttribute("comlist", comlist);
 			
 			newsById = newsDao.getNewsById(nid);
+			//将对象存入请求对象
 			request.setAttribute("newsById", newsById);
+			//查询所有主题
 			 topiclist = topicdao.getAllTopics();
+			//将对象存入请求对象
 			request.setAttribute("topiclist", topiclist);
 		} catch (Exception e) {
 			// TODO �Զ����ɵ� catch ��
 			e.printStackTrace();
 		}
 			if("1".equals(option)){
+				//转发
 				request.getRequestDispatcher("/editNews.jsp").forward(request, response);
 			}
 			else{

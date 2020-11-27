@@ -36,23 +36,29 @@ public class AjaxSelectNews extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		//根据name获取前台数据
 		String a=request.getParameter("tnid");
+		//将string转换为int
 		int ntid =Integer.valueOf(a);
 				
 		NewsDao news = new NewsDaoImpl();
+		//根据id查找所有新闻
 		List<News> newsByTopicId = news.getNewsByTopicId(ntid);
-		
+		//创建json集合
 		JSONArray json =new  JSONArray();
-		
+		//遍历新闻集合
 		for(News n : newsByTopicId)
 		{
+			//创建json对象
 			JSONObject jo = new JSONObject();
+			//循环给json对象添加键值
 			jo.put("nid", n.getNid());
 			jo.put("ntitle", n.getNtitle());
 			jo.put("nauthor", n.getNauthor());
 			jo.put("ncreateDate",n.getNcreateDate().toString());
 			json.add(jo);
 		}
+		//响应前台
 		response.getWriter().append(json.toString());
 	}
 

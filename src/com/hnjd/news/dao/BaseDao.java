@@ -16,17 +16,17 @@ public class BaseDao {
 	 * @throws SQLException
 	 */
 	public int excuteUpdate(String sql,Object... params) throws SQLException {
-		//1.�������ݿ�
+		//1.获取连接对象
 		Connection conn = DatabaseUtil.getConnection();
-		//2.�����ݿⷢ��sql���
+		//2.预编译sql
 		PreparedStatement pst = conn.prepareStatement(sql);
-		//3.�����ݿⷢ�͸��Ӳ���
+		//3.占位符赋值
 		for(int i = 0 ; i < params.length ; i++) {
 			pst.setObject(i + 1, params[i]);
 		}
-		//4.ִ�в���
+		//4.ִ返回增删改操作影响行数
 		int result = pst.executeUpdate();
-		//5.�ر����ݿ�
+		//5.释放资源
 		DatabaseUtil.closeAll(conn, pst, null);
 		return result;
 	}
@@ -36,19 +36,19 @@ public class BaseDao {
 	 * @throws SQLException 
 	 */
 	public ResultSet excuteQuery(String sql,Object... params) throws SQLException {
-		//1.��ȡ���ݿ�����
+		//1.1.获取连接对象
 		Connection conn = DatabaseUtil.getConnection();
-		//2.�����ݿⷢ��sql���"select * from news_users where uname=? and upwd=?"
+		//2.预编译sql
 		PreparedStatement pst = conn.prepareStatement(sql);
-		//3.�����ݿ⴫�ݸ��Ӳ���
+		//3.占位符赋值
 		for(int i = 0 ; i < params.length ; i++) {
 			pst.setObject(i + 1, params[i]);
 		}
 		
-		//4.ִ�в�ѯ����
+		//4.ִ返回查询结果集
 		ResultSet result = pst.executeQuery();
 		
-//		DatabaseUtil.closeAll(conn, pst, null);
+
 		return result;
 	}
 }

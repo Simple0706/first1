@@ -18,8 +18,8 @@ import com.hnjd.news.util.DatabaseUtil;
  */
 public class NewsDaoImpl extends BaseDao implements NewsDao {
 
-	/* ���� Javadoc��
-	 * @see com.hnjd.news.dao.NewsDao#getAllNews()
+	/* 
+	 * 查询所有新闻
 	 */
 	@Override
 	public List<News> getAllNews() throws SQLException {
@@ -43,8 +43,8 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		
 	}
 
-	/* ���� Javadoc��
-	 * @see com.hnjd.news.dao.NewsDao#getNewsByTopicId(int)
+	/* 
+	 * 根据id查找所有新闻
 	 */
 	@Override
 	public List<News> getNewsByTopicId(int ntid) {
@@ -79,8 +79,8 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		return newsList;
 	}
 
-	/* ���� Javadoc��
-	 * @see com.hnjd.news.dao.NewsDao#getNewsById(int)
+	/* 
+	 * 根据id查找新闻
 	 */
 	@Override
 	public News getNewsById(int nid) throws SQLException {
@@ -105,8 +105,8 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 	
 
 	
-	/* ���� Javadoc��
-	 * @see com.hnjd.news.dao.NewsDao#addNews(com.hnjd.news.entity.News)
+	/* 
+	 * 添加新闻
 	 */
 	@Override
 	public int addNews(News news) throws SQLException {
@@ -124,8 +124,8 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		return result;
 	}
 
-	/* ���� Javadoc��
-	 * @see com.hnjd.news.dao.NewsDao#editNews(int)
+	/* 
+	 * 修改新闻
 	 */
 	@Override
 	public int editNews(int nid,News news ) throws SQLException {
@@ -143,28 +143,10 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		return result;
 	}
 
-	/*public static void main(String[] args) {
-		NewsDaoImpl newsDao = new NewsDaoImpl();
-		//������Ҫ�޸�֮��Ķ���
-		News news = new News();
-		news.setNid(187);
-		news.setNcontent("123");
-		news.setNtitle("����");
-		news.setNauthor("����");
-		news.setNsummary("����");
-		news.setNtid(3);
-		news.setNcreateDate(new Date());
-		try {
-			newsDao.editNews(187, news);
-		} catch (SQLException e) {
-			// TODO �Զ����ɵ� catch ��
-			e.printStackTrace();
-		}
-	}*/
 	
 	
-	/* ���� Javadoc��
-	 * @see com.hnjd.news.dao.NewsDao#deleteNews(int)
+	/* 
+	 * 删除新闻
 	 */
 	@Override
 	public int deleteNews(int nid) throws SQLException {
@@ -172,7 +154,9 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		int result = excuteUpdate(sql , nid);
 		return result;
 	}
-
+	/*
+	 * limit查询新闻
+	 */
 	@Override
 	public List<News> countnews(int thispage, int showpage) throws SQLException {
 		// TODO Auto-generated method stub
@@ -196,7 +180,9 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		return newsList;
 		
 	}
-
+	/*
+	 * 模糊查询新闻
+	 */
 	@Override
 	public List<News> selectLinknews(String a) throws Exception {
 		// TODO Auto-generated method stub

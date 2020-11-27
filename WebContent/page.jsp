@@ -25,8 +25,8 @@ a:HOVER {
 <body>
 <form action="SelectLikeNews" style="text-align: center;" method="post">
 查询内容<input type="text" name="like" placeholder="根据新闻标题和作者查询新闻">
-<input type="submit" value="查询">
-<a href="addNews.jsp">添加新闻</a>
+<input type="submit" value="查询">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;<a href="addNews.jsp" style="color:red;">添加新闻</a>
 <br>
 <br>
 </form>
@@ -97,46 +97,66 @@ a:HOVER {
 				
 			</tr>
 </table>
-</div>		
+</div>	
+	<%-- <br>
+	<br>
+	<br>
+	<br>
+	<span style="font-size: 30px;color: red; align: center;">广告招商，有意向请联系管理员</span>
+	 --%>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 	<script type="text/javascript">
 	$(function(){
+		<%-- --%>
 		var aa=1;
+		<%--默认分页  --%>
 		$("#shang").show()
+		
+		<%--默认分页  --%>
 		$("#xia").show()
+		
+		<%--自选分页隐藏  --%>
 		$("#ajaxxia").hide()
-		//按主题显示新闻。
+		
+			<%--按主题显示新闻。 --%>
 		$(".a").each(function(){
 			$(this).click(function(){	
 				var tnid=$(this).data("tid");
-				
+				<%--按主题显示新闻AJAX --%>
 				$.ajax({
 					url:"AjaxSelectNews",
 					type:"Get",
 					data:"tnid="+tnid,
 					datatype:"json",
 					success:function(data){
+						<%--将json对象抓换为js对象 --%>
 						var data1=JSON.parse(data)
+						
+						<%--清空首页 --%>
 						$("table").html(" ")
+						
+						<%--清空显示的新闻 --%>
 						$("div").html(" ")
+						
+						<%--新闻显示模板 --%>
 						var html="<tr>"+
 						//"<td><input type='checkbox' name='nids' value='{{nid}}'></td>"+
-						"<td>{{ntid}}</td>"+
+						"<td>{{ntid}}</td>&nbsp;&nbsp;"+
 						"<td>"+
-							"<a href='${pageContext.request.contextPath}/selectNewsServlet?nid={{ntid}}'> {{ntitle}} </a>"+
+							"<a href='${pageContext.request.contextPath}/selectNewsServlet?nid={{ntid}}'> {{ntitle}} </a>&nbsp;&nbsp;"+
 						"</td>"+
 						
-						"<td>{{nauthor}}</td>"+
-						"<td>{{ncreateDate}}</td>"+
+						"<td>{{nauthor}}&nbsp;&nbsp;</td>"+
+						"<td>{{ncreateDate}}&nbsp;&nbsp;</td>"+
 						/* "<td>{{nmodifyDate}}</td>"+ */
 						"<td>"+
-							"<a href='${pageContext.request.contextPath}/selectNewsServlet?nid={{ntid}}&option=1'>修改</a>"+
-							"<a href='${pageContext.request.contextPath}/deleteNewsServlet?nid={{ntid}}'>删除</a>"
+							"<a href='${pageContext.request.contextPath}/selectNewsServlet?nid={{ntid}}&option=1'>修改</a>&nbsp;&nbsp;"+
+							"<a href='${pageContext.request.contextPath}/deleteNewsServlet?nid={{ntid}}'>删除</a>&nbsp;&nbsp;"
 						"</td>"+
 					"</tr>"
 						
 						
-						
+						<%--循环追加新闻 --%>
 						for(var i=0;i<data1.length;i++){
 							
 							
@@ -145,23 +165,17 @@ a:HOVER {
 									.replace(/{{ntitle}}/g,data1[i].ntitle)
 									.replace(/{{ncreateDate}}/g,data1[i].ncreateDate)
 									. replace(/{{nauthor}}/g, data1[i] .nauthor))
-									//. replace(/{{nmodifyDate}}/g,data1[i].nmodifyDate))
-							
-							
-							
-							
-							
-							
-							
-						//	alert(data1[i].nid)
-							//alert(data1[i].ntitle)
-						//	alert(data1[i].nauthor)
-						//	alert(data1[i].ncreateDate)
+									//. replace(/{{nmodifyDate}}/g,data1[i].nmodifyDate))		
+									//	alert(data1[i].nid)
+										//alert(data1[i].ntitle)
+									//	alert(data1[i].nauthor)
+									//	alert(data1[i].ncreateDate)
 						}
 						
-						
+							
 					},
 					error:function(){
+						<%--AJAX请求错误执行回调函数 --%>
 						alert("错误")
 					}
 					
@@ -172,19 +186,22 @@ a:HOVER {
 		
 		
 	
-	//分页自选显示新闻
 	
+	<%--分页自选显示新闻 --%>
 	$("#showpage").change(function(){
 		aa=1;
 		var showpage=$(this).val();
 		$("#shang").hide()
+		
 		$("#xia").hide()
+		
 		$("#ajaxxia").show()
 	
 		var obj = {
 				"thispage":"1",
 				"showpage":showpage
 		}
+		<%--将js对象转换为json对象 --%>
 		var objjson=JSON.stringify(obj)
 		$.ajax({
 			url:"selectnews",
@@ -192,41 +209,43 @@ a:HOVER {
 			type:"Post",
 			datatype:"json",
 			success:function(data){
+				<%--将json对象转换为js对象 --%>
 				var data1= JSON.parse(data);
+				
 				$("table").html(" ")
 				$("div").html(" ")	
 				var html="<tr>"+
 						//"<td><input type='checkbox' name='nids' value='{{nid}}'></td>"+
-						"<td>{{ntid}}</td>"+
+						"<td>{{ntid}}&nbsp;&nbsp;</td>"+
 						"<td>"+
-							"<a href='${pageContext.request.contextPath}/selectNewsServlet?nid={{ntid}}'> {{ntitle}} </a>"+
+							"<a href='${pageContext.request.contextPath}/selectNewsServlet?nid={{ntid}}'> {{ntitle}} </a>&nbsp;&nbsp;"+
 						"</td>"+
 						
-						"<td>{{nauthor}}</td>"+
-						"<td>{{ncreateDate}}</td>"+
+						"<td>{{nauthor}}&nbsp;&nbsp;</td>"+
+						"<td>{{ncreateDate}}&nbsp;&nbsp;</td>"+
 						/* "<td>{{nmodifyDate}}</td>"+ */
 						"<td>"+
-							"<a href='${pageContext.request.contextPath}/selectNewsServlet?nid={{ntid}}&option=1'>修改</a>"+
-							"<a href='${pageContext.request.contextPath}/deleteNewsServlet?nid={{ntid}}'>删除</a>"
+							"<a href='${pageContext.request.contextPath}/selectNewsServlet?nid={{ntid}}&option=1'>修改</a>&nbsp;&nbsp;"+
+							"<a href='${pageContext.request.contextPath}/deleteNewsServlet?nid={{ntid}}'>删除</a>&nbsp;&nbsp;"
 						"</td>"+
 					"</tr>"
 						
 				for(var i=0;i<data1.length;i++){
-					
-					
+
 					$("div"). append(html
 							. replace(/{{ntid}}/g,data1[i].nid)
 							.replace(/{{ntitle}}/g,data1[i].ntitle)
 							.replace(/{{ncreateDate}}/g,data1[i].ncreateDate)
 							. replace(/{{nauthor}}/g, data1[i] .nauthor))
 							//. replace(/{{nmodifyDate}}/g,data1[i].nmodifyDate))
-					
-				//	alert(data1[i].nid)
-					//alert(data1[i].ntitle)
-				//	alert(data1[i].nauthor)
-				//	alert(data1[i].ncreateDate)
+								
+							//	alert(data1[i].nid)
+								//alert(data1[i].ntitle)
+							//	alert(data1[i].nauthor)
+							//	alert(data1[i].ncreateDate)
 				}
 			},
+			
 			error:function(){
 				
 			}
@@ -253,14 +272,14 @@ a:HOVER {
 				}
 			},
 			error:function(){
-				
+				<%--AJAX请求错误执行回调函数 --%>
 			}
 			
 		})
 		
 	})
-	//分页 下一页
 	
+		<%--自选页数分页下一页 --%>
 		$("#ajaxxia").click(function(){
 			var showpage=$("#showpage").val();
 			
@@ -284,15 +303,15 @@ a:HOVER {
 							//"<td><input type='checkbox' name='nids' value='{{nid}}'></td>"+
 							"<td>{{ntid}}</td>"+
 							"<td>"+
-								"<a href='${pageContext.request.contextPath}/selectNewsServlet?nid={{ntid}}'> {{ntitle}} </a>"+
+								"<a href='${pageContext.request.contextPath}/selectNewsServlet?nid={{ntid}}'> {{ntitle}} </a>&nbsp;&nbsp;"+
 							"</td>"+
 							
-							"<td>{{nauthor}}</td>"+
-							"<td>{{ncreateDate}}</td>"+
+							"<td>{{nauthor}}&nbsp;&nbsp;</td>"+
+							"<td>{{ncreateDate}}&nbsp;&nbsp;</td>"+
 							/* "<td>{{nmodifyDate}}</td>"+ */
 							"<td>"+
-								"<a href='${pageContext.request.contextPath}/selectNewsServlet?nid={{ntid}}&option=1'>修改</a>"+
-								"<a href='${pageContext.request.contextPath}/deleteNewsServlet?nid={{ntid}}'>删除</a>"
+								"<a href='${pageContext.request.contextPath}/selectNewsServlet?nid={{ntid}}&option=1'>修改</a>&nbsp;&nbsp;"+
+								"<a href='${pageContext.request.contextPath}/deleteNewsServlet?nid={{ntid}}'>删除</a>&nbsp;&nbsp;"
 							"</td>"+
 						"</tr>"
 							

@@ -25,9 +25,11 @@ public class DeleteNewsServlet extends HttpServlet {
 	 * ɾ��һ������
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//根据name获取前台的值
 		String nid = request.getParameter("nid");
 		NewsDao newsDao = new NewsDaoImpl();
 		try {
+			//根据id删除新闻
 			newsDao.deleteNews(Integer.valueOf(nid));
 		} catch (NumberFormatException e) {
 			
@@ -36,6 +38,7 @@ public class DeleteNewsServlet extends HttpServlet {
 			
 			e.printStackTrace();
 		}
+		//转发
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 
@@ -44,10 +47,13 @@ public class DeleteNewsServlet extends HttpServlet {
 	 * ɾ����������
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//根据name获取前台的值
 		String[] nids = request.getParameterValues("nids");
 		try {
 			NewsDao newsDao = new NewsDaoImpl();
+			//循环遍历nids
 			for(String nid :nids) {
+				//根据id删除新闻
 				newsDao.deleteNews(Integer.valueOf(nid));
 			}
 		} catch (NumberFormatException e) {
@@ -57,6 +63,7 @@ public class DeleteNewsServlet extends HttpServlet {
 			// TODO �Զ����ɵ� catch ��
 			e.printStackTrace();
 		}
+		//转发
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 

@@ -18,7 +18,7 @@ import com.hnjd.news.entity.News;
 /**
  * Servlet implementation class AddNewsServlet
  */
-@WebServlet("/addNewsServlet")//������ṩ��һ������·��
+@WebServlet("/addNewsServlet")//默认访问路径
 public class AddNewsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -28,7 +28,7 @@ public class AddNewsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String ntitle = request.getParameter("ntitle");
 		ntitle = new String( ntitle.getBytes("ISO-8859-1") , "UTF-8");
-		
+		//改变编码方式，
 		String username = request.getParameter("username");
 		URLDecoder.decode(username, "utf-8");
 	}
@@ -58,7 +58,9 @@ public class AddNewsServlet extends HttpServlet {
 		news.setNmodifyDate(new Date());
 		
 		try {
+			//添加新闻
 			newsDao.addNews(news);
+			//转发index.jsp页面
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		} catch (Exception e) {
 			

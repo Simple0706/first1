@@ -4,10 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import com.hnjd.news.util.DatabaseUtil;
 
 public class BaseDao {
+	Connection conn = null;
+	PreparedStatement pst = null;
+	ResultSet result = null;
 	/**
 	 * ��ɾ�Ĳ���
 	 * @param sql
@@ -17,9 +21,9 @@ public class BaseDao {
 	 */
 	public int excuteUpdate(String sql,Object... params) throws SQLException {
 		//1.获取连接对象
-		Connection conn = DatabaseUtil.getConnection();
+		conn = DatabaseUtil.getConnection();
 		//2.预编译sql
-		PreparedStatement pst = conn.prepareStatement(sql);
+		pst = conn.prepareStatement(sql);
 		//3.占位符赋值
 		for(int i = 0 ; i < params.length ; i++) {
 			pst.setObject(i + 1, params[i]);
@@ -37,18 +41,17 @@ public class BaseDao {
 	 */
 	public ResultSet excuteQuery(String sql,Object... params) throws SQLException {
 		//1.1.获取连接对象
-		Connection conn = DatabaseUtil.getConnection();
+		conn = DatabaseUtil.getConnection();
 		//2.预编译sql
-		PreparedStatement pst = conn.prepareStatement(sql);
+		pst = conn.prepareStatement(sql);
 		//3.占位符赋值
 		for(int i = 0 ; i < params.length ; i++) {
 			pst.setObject(i + 1, params[i]);
 		}
 		
 		//4.ִ返回查询结果集
-		ResultSet result = pst.executeQuery();
-		
-
+		result = pst.executeQuery();
 		return result;
 	}
+	
 }

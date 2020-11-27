@@ -38,7 +38,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 			news.setNtid(res.getInt("ntid"));
 			newsList.add(news);
 		}
-		DatabaseUtil.closeAll( null, null, res);
+		DatabaseUtil.closeAll( conn, pst, res);
 		return newsList;
 		
 	}

@@ -58,7 +58,7 @@
 			
 			<tr>
 			<td>
-					<a href="${pageContext.request.contentType}/first1/selectnews?thispage=10" id="shang">上一页</a>
+					<a href="${pageContext.request.contentType}/first1/selectnews?thispage=${page.thispage-1}&showpage=10" id="shang">上一页</a>
 					<c:forEach begin="1" end="${page.countpagesize}" var="index">
 					
 					<a href="${pageContext.request.contentType}/first1/selectnews?thispage=${index}&showpage=10" id="index">${index}</a>
@@ -84,11 +84,11 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 	<script type="text/javascript">
 	$(function(){
-		
+		var aa=1;
 		$("#shang").show()
 		$("#xia").show()
 		$("#ajaxxia").hide()
-		
+		//按主题显示新闻。
 		$(".a").each(function(){
 			$(this).click(function(){	
 				var tnid=$(this).data("tid");
@@ -158,68 +158,12 @@
 	//分页自选显示新闻
 	
 	$("#showpage").change(function(){
+		aa=1;
 		var showpage=$(this).val();
 		$("#shang").hide()
 		$("#xia").hide()
 		$("#ajaxxia").show()
-		$("#ajaxxia").click(function(){
-			var a=1;
-			a++
-			var obj = {
-					"thispage":a,
-					"showpage":showpage
-			}
-			var objjson=JSON.stringify(obj)
-			$.ajax({
-				url:"selectnews",
-				data:{obj:objjson},
-				type:"Post",
-				datatype:"json",
-				success:function(data){
-					var data1= JSON.parse(data);
-					$("table").html(" ")
-					$("div").html(" ")	
-					var html="<tr>"+
-							//"<td><input type='checkbox' name='nids' value='{{nid}}'></td>"+
-							"<td>{{ntid}}</td>"+
-							"<td>"+
-								"<a href='${pageContext.request.contextPath}/selectNewsServlet?nid={{ntid}}'> {{ntitle}} </a>"+
-							"</td>"+
-							
-							"<td>{{nauthor}}</td>"+
-							"<td>{{ncreateDate}}</td>"+
-							/* "<td>{{nmodifyDate}}</td>"+ */
-							"<td>"+
-								"<a href='${pageContext.request.contextPath}/selectNewsServlet?nid={{ntid}}&option=1'>修改</a>"+
-								"<a href='${pageContext.request.contextPath}/deleteNewsServlet?nid={{ntid}}'>删除</a>"
-							"</td>"+
-						"</tr>"
-							
-					for(var i=0;i<data1.length;i++){
-						
-						
-						$("div"). append(html
-								. replace(/{{ntid}}/g,data1[i].nid)
-								.replace(/{{ntitle}}/g,data1[i].ntitle)
-								.replace(/{{ncreateDate}}/g,data1[i].ncreateDate)
-								. replace(/{{nauthor}}/g, data1[i] .nauthor))
-								//. replace(/{{nmodifyDate}}/g,data1[i].nmodifyDate))
-						
-					//	alert(data1[i].nid)
-						//alert(data1[i].ntitle)
-					//	alert(data1[i].nauthor)
-					//	alert(data1[i].ncreateDate)
-					}
-				},
-				error:function(){
-					
-				}
-			})
-			
-			
-			
-			
-		})
+	
 		var obj = {
 				"thispage":"1",
 				"showpage":showpage
@@ -298,6 +242,70 @@
 		})
 		
 	})
+	//分页 下一页
+	
+		$("#ajaxxia").click(function(){
+			var showpage=$("#showpage").val();
+			
+			aa+=1;
+			alert(aa)
+			var obj = {
+					"thispage":""+aa+"",
+					"showpage":showpage
+			}
+			var objjson=JSON.stringify(obj)
+			$.ajax({
+				url:"selectnews",
+				data:{obj:objjson},
+				type:"Post",
+				datatype:"json",
+				success:function(data){
+					var data1= JSON.parse(data);
+					$("table").html(" ")
+					$("div").html(" ")	
+					var html="<tr>"+
+							//"<td><input type='checkbox' name='nids' value='{{nid}}'></td>"+
+							"<td>{{ntid}}</td>"+
+							"<td>"+
+								"<a href='${pageContext.request.contextPath}/selectNewsServlet?nid={{ntid}}'> {{ntitle}} </a>"+
+							"</td>"+
+							
+							"<td>{{nauthor}}</td>"+
+							"<td>{{ncreateDate}}</td>"+
+							/* "<td>{{nmodifyDate}}</td>"+ */
+							"<td>"+
+								"<a href='${pageContext.request.contextPath}/selectNewsServlet?nid={{ntid}}&option=1'>修改</a>"+
+								"<a href='${pageContext.request.contextPath}/deleteNewsServlet?nid={{ntid}}'>删除</a>"
+							"</td>"+
+						"</tr>"
+							
+					for(var i=0;i<data1.length;i++){
+						
+						
+						$("div"). append(html
+								. replace(/{{ntid}}/g,data1[i].nid)
+								.replace(/{{ntitle}}/g,data1[i].ntitle)
+								.replace(/{{ncreateDate}}/g,data1[i].ncreateDate)
+								. replace(/{{nauthor}}/g, data1[i] .nauthor))
+								//. replace(/{{nmodifyDate}}/g,data1[i].nmodifyDate))
+						
+					//	alert(data1[i].nid)
+						//alert(data1[i].ntitle)
+					//	alert(data1[i].nauthor)
+					//	alert(data1[i].ncreateDate)
+					}
+				},
+				error:function(){
+					
+				}
+			})
+			
+			
+			
+			
+		})
+	
+	
 	
   })	
 	</script>

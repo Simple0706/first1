@@ -44,8 +44,11 @@ public class BaseDao {
 		for(int i = 0 ; i < params.length ; i++) {
 			pst.setObject(i + 1, params[i]);
 		}
+		
 		//4.ִ�в�ѯ����
 		ResultSet result = pst.executeQuery();
+		
+//		DatabaseUtil.closeAll(conn, pst, null);
 		return result;
 	}
 }

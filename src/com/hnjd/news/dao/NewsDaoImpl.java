@@ -50,8 +50,9 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 	public List<News> getNewsByTopicId(int ntid) {
 		List<News> newsList = new ArrayList<News>();
 		String sql = "select * from news where ntid = ?";
+		ResultSet resultSet=null;
 		try {
-			ResultSet resultSet = excuteQuery(sql, ntid);
+			 resultSet = excuteQuery(sql, ntid);
 			while(resultSet.next()) {
 				News news = new News();
 				news.setNid(resultSet.getInt("nid"));
@@ -66,11 +67,14 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 				newsList.add(news);
 			
 			}
-			DatabaseUtil.closeAll( null, null, resultSet);
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		 finally {
+	            DatabaseUtil.closeAll(null, null, resultSet);
+	        }
 		
 		return newsList;
 	}

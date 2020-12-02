@@ -7,7 +7,7 @@
 <title>添加新闻主题</title>
 </head>
 <body>
-<form action="AddTopic">
+<form action="AddTopic" method="get" accept-charset="utf-8">
 新闻主题名称<input type="text" name="TopicName">
 <input type="submit" value="添加">
 </form>

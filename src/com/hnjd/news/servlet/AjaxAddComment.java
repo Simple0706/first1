@@ -63,6 +63,7 @@ public class AjaxAddComment extends HttpServlet {
 		//将字符串强转为int类型。自动拆箱
 		Integer nid = Integer.valueOf(ajaxcomment.getCid());
 		Comment comment = new Comment();
+		
 		comment.setCdate(new Date());
 		comment.setCnid(nid);
 		comment.setCcontent(ajaxcomment.getText());

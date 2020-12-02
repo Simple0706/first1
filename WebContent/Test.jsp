@@ -26,6 +26,8 @@
 					data:{obj:jsonobj},
 					dataType:"json",
 					success:function(data){
+						//tomcat改编码
+						//URIEncoding="UTF-8"
 						alert(data.message)
 						
 					},

@@ -26,7 +26,8 @@ a:HOVER {
 <form action="SelectLikeNews" style="text-align: center;" method="post">
 查询内容<input type="text" name="like" placeholder="根据新闻标题和作者查询新闻">
 <input type="submit" value="查询">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;<a href="addNews.jsp" style="color:red;">添加新闻</a>
+&nbsp;&nbsp;&nbsp;<a href="addNews.jsp" style="color:red;">添加新闻</a>&nbsp;&nbsp;&nbsp;
+<a href="AddTopic.jsp" style="color:red;">添加主题</a>
 <br>
 <br>
 </form>

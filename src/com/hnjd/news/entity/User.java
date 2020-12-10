@@ -7,6 +7,14 @@ public class User {
 	public int getUid() {
 		return uid;
 	}
+	public User() {
+		super();
+	}
+	public User(String uname, String upwd) {
+		super();
+		this.uname = uname;
+		this.upwd = upwd;
+	}
 	public void setUid(int uid) {
 		this.uid = uid;
 	}

@@ -23,6 +23,12 @@ a:HOVER {
 -->
 </style>
 <body>
+
+<c:if test="${user}!=null">
+欢迎${user.uname}访问。
+</c:if>
+
+
 <form action="SelectLikeNews" style="text-align: center;" method="post">
 查询内容<input type="text" name="like" placeholder="根据新闻标题和作者查询新闻">
 <input type="submit" value="查询">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

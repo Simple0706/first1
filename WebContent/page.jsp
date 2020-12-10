@@ -24,7 +24,7 @@ a:HOVER {
 </style>
 <body>
 
-<c:if test="${user}!=null">
+<c:if test="${user!=null}">
 欢迎${user.uname}访问。
 </c:if>
 

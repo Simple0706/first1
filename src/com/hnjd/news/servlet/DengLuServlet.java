@@ -31,11 +31,12 @@ public class DengLuServlet extends HttpServlet {
 		User user = new User(auser,pas);
 		UserService userService = new UserService();
 		User dengLu = userService.DengLu(user);
-		System.out.println(dengLu.getUname());
+		
 		if(dengLu!=null){
-			response.getWriter().print("成功");
+			
 			request.getSession().setAttribute("user", dengLu);
-			request.getRequestDispatcher("index.jsp").forward(request, response);
+			response.getWriter().print("成功");
+//			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 		else{
 			response.getWriter().print("失败");

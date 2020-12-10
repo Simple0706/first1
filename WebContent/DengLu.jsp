@@ -36,8 +36,9 @@
 				data:$('form').serializeArray(),
 				datatype:"text",
 				success:function(data){
+					alert(data)
 					if(data=="成功"){
-						
+						location.href="index.jsp";
 					}else{
 						alert("用户名或密码错误")
 					}

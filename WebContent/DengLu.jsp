@@ -32,7 +32,7 @@
 			
 			$.ajax({
 				url:"DengLuServlet",
-				type:"post",
+				type:"Post",
 				data:$('form').serializeArray(),
 				datatype:"text",
 				success:function(data){

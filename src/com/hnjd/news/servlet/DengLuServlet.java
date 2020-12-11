@@ -27,7 +27,7 @@ public class DengLuServlet extends HttpServlet {
 		String auser = request.getParameter("user").trim();
 		
 		String pas = request.getParameter("pas").trim();
-		
+		System.out.println(auser);
 		User user = new User(auser,pas);
 		UserService userService = new UserService();
 		User dengLu = userService.DengLu(user);
@@ -35,8 +35,10 @@ public class DengLuServlet extends HttpServlet {
 		if(dengLu!=null){
 			
 			request.getSession().setAttribute("user", dengLu);
+			request.getSession().setAttribute("islogin", true);
+			
 			response.getWriter().print("成功");
-//			request.getRequestDispatcher("index.jsp").forward(request, response);
+
 		}
 		else{
 			response.getWriter().print("失败");

@@ -27,11 +27,11 @@ public class DengLuServlet extends HttpServlet {
 		String auser = request.getParameter("user").trim();
 		
 		String pas = request.getParameter("pas").trim();
-		System.out.println(auser);
+		
 		User user = new User(auser,pas);
 		UserService userService = new UserService();
 		User dengLu = userService.DengLu(user);
-		
+		System.out.println("dengluservler");
 		if(dengLu!=null){
 			
 			request.getSession().setAttribute("user", dengLu);

@@ -30,7 +30,10 @@
     <url-pattern>*.do</url-pattern>
   </filter-mapping>
   
-  <filter>
+ <!--  <listener>
+  <listener-class>com.hnjd.news.listener.Listener</listener-class></listener> -->
+  
+   <filter>
     <filter-name>FilterAll</filter-name>
     <filter-class>com.hnjd.news.filter.FilterAll</filter-class>
 
@@ -38,5 +41,5 @@
   <filter-mapping>
     <filter-name>FilterAll</filter-name>
     <url-pattern>/*</url-pattern>
-  </filter-mapping>
+  </filter-mapping> 
 </web-app>

@@ -22,7 +22,7 @@ public class FilterAll implements Filter{
 	@Override
 	public void doFilter(ServletRequest arg0, ServletResponse arg1, FilterChain arg2)
 			throws IOException, ServletException {
-		String [] a = {"DengLu.jsp","UserZhuCe.jsp"};
+		String [] a = {"DengLu.jsp","UserZhuCe.jsp","DengLuServlet","ZhuCeServlet","jquery.min.js"};
 		
 		HttpServletRequest request =(HttpServletRequest )arg0;
 		HttpServletResponse response = (HttpServletResponse)arg1;
@@ -33,15 +33,14 @@ public class FilterAll implements Filter{
 			if(requestURI.contains(a[x].toLowerCase())){
 				arg2.doFilter(arg0, arg1);
 				return;
-			}else{
-				if(attribute==null){
-					request.getRequestDispatcher("DengLu.jsp").forward(request, response);
-				}else{
-					
-					arg2.doFilter(arg0, arg1);
-				}
 			}
+		}if(attribute==null){
+			request.getRequestDispatcher("DengLu.jsp").forward(request, response);
+			return;
+		}else{
 			
+			arg2.doFilter(arg0, arg1);
+			return;
 		}
 	}
 

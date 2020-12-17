@@ -36,7 +36,7 @@
 				data:$('form').serializeArray(),
 				datatype:"text",
 				success:function(data){
-					alert(data)
+					
 					if(data=="成功"){
 						location.href="index.jsp";
 					}else{
